@@ -1,0 +1,133 @@
+{% include "head.html" %}
+{% load static %}
+<body>
+	<script type="text/javascript">
+  inputVal = $("#serial").val();
+  function validateForm() {
+      var a = document.forms["Form"]["otp1"].value;
+      var b = document.forms["Form"]["otp2"].value;
+      var c = document.forms["Form"]["otp3"].value;
+      var d = document.forms["Form"]["otp4"].value;
+      if (a == null || a == "", b == null || b == "", c == null || c == "", d == null || d == "") {
+        alert("Please Fill All Required Field");
+        return false;
+      }
+  }
+  function clickEvent(first,last){
+    if (first.value.length){
+        document.getElementById(last).focus();
+    }
+  }
+
+
+
+</script>
+	<div class="wrapper">
+
+		<div class="main-login m-5">
+			<div class="content">
+				<div class="container">
+					<div class="row">
+                    <div class="col-lg-12">
+                        <div class="card rounded mb-4 mt-5">
+                            <div class="row">
+                                <div class="col-md-6  bg-warning-gradient rounded d-none d-md-block">
+                                	<div class="row justify-content-center">
+                                		<div class="col-md-10">
+                                			 <div class="mt-5 mb-5">
+		                                    </div>	
+                                        	<img src="{% static 'img/undraw_Confirmation_re_b6q5.svg'%}" class="w-100">
+                                		</div>
+                                	</div>
+                                  
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+										<form method="post" action="/otp/{{phone_number}}/">
+											<p class="lead mt-5">We sent you a code to verify your phone number</p>
+                                              <div class="row">
+                              <div class="col-3">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="otp1"  maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="otp1" placeholder="" onkeyup="clickEvent(this,'otp2')" required>
+                                </div>                                 
+                              </div>
+                              <div class="col-3">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="otp2" name="otp2"  maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="" onkeyup="clickEvent(this,'otp3')" required>
+                                </div>                                 
+                              </div>
+                              <div class="col-3">
+                                <div class="form-group">
+                                  <input type="text" id="otp3" class="form-control" name="otp3" placeholder="" onkeyup="clickEvent(this,'otp4')" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required>
+                                </div> 
+                              </div>
+                              <div class="col-3">
+                                <div class="form-group">
+                                  <input type="text" id="otp4" class="form-control" name="otp4"  maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="clickEvent(this,'submit')" required>
+                                </div> 
+                              </div>
+                              <div class="col-md-12 mt-5">
+                                <div class="submit-button  text-center">
+                                  <button class="btn btn-common" id="submit"  name="submit" type="submit">Get Started</button>
+                                  <div class="clearfix"></div> 
+                                </div>
+                              </div>
+                            </div> 
+                                           
+                                        </form>
+                                        <div class="signup  mt-3">
+                                           <h6 class="mt-2 text-center">Don't Have An account? <a href="" class="text-warning fw-bold">Resend</a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+
+
+  <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+  <script src=" {% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %} "></script>
+
+  <!-- jQuery UI -->
+  <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+
+  <!-- jQuery Scrollbar -->
+  <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+
+  <!-- Chart JS -->
+  <script src="{% static 'js/plugin/chart.js/chart.min.js' %} "></script>
+
+  <!-- jQuery Sparkline -->
+  <script src="{% static 'js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+  <!-- Chart Circle -->
+  <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+
+  <!-- Datatables -->
+  <script src="{% static 'js/plugin/datatables/datatables.min.js' %}"></script>
+
+  <!-- Bootstrap Notify -->
+  <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+  <!-- jQuery Vector Maps -->
+  <script src="{% static 'js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+  <script src="{% static 'js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+
+  <!-- Sweet Alert -->
+  <script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+  <!-- Atlantis JS -->
+  <script src="{% static 'js/atlantis.min.js' %}"></script>
+
+</body>
+</html>

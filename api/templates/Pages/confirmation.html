@@ -1,0 +1,169 @@
+{% include "head.html" %}
+{% load static %}
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header bg-warning-gradient">
+
+				<a href="index.html" class="logo">
+					<!-- <img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand"> -->
+					<h3 class="navbar-brand text-white">EnayaPay</h3>
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			  {% include "Navbarheader.html" %}
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		{% include "sidebar.html" %}
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+				<div class="panel-header bg-warning-gradient">
+					<div class="page-inner py-4">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row"><h2 class="text-white pb-2 fw-bold d-inline">Payment Response</h2>
+							<ul class="breadcrumbs">
+								<li class="nav-home">
+									<a href="index.html">
+										<i class="flaticon-home text-white"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+					<div class="row justify-content-center">
+						<div class="col-md-6">
+							<div class="card full-height">
+								<div class="card-body">	
+											<div class="d-flex">
+												<div class="flex-1 pt-1 ml-2">
+													<h6 class="fw-bold mb-1 text-muted">Amount</h6>
+												</div>
+												<div class="d-flex ml-auto align-items-center">
+													<div class="icon-preview">
+														<h6>{{result.amount_sdg}} SDG</h6>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<!-- <div class="d-flex mt-3">
+												<div class="flex-1 pt-1 ml-2">
+													<h6 class="fw-bold mb-1 text-muted">Card Number</h6>
+												</div>
+												<div class="d-flex ml-auto align-items-center">
+													<div class="icon-preview">
+														<h6>{{reslut}}</h6>
+													</div>
+												</div>
+											</div> -->
+											<!-- <hr> -->
+											<div class="d-flex">
+												<div class="flex-1 pt-1 ml-2">
+													<h6 class="fw-bold mb-1 text-muted"> message </h6>
+												</div>
+												<div class="d-flex ml-auto align-items-center">
+													<div class="icon-preview">
+														<h6>{{result.enaya_response.responseStatus}}</h6>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<div class="d-flex">
+												<div class="flex-1 pt-1 ml-2">
+													<h6 class="fw-bold mb-1 text-muted"> Phone or electricity Number </h6>
+												</div>
+												<div class="d-flex ml-auto align-items-center">
+													<div class="icon-preview">
+														<h6>{{result.enaya_response.paymentInfo}}</h6>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<div class="d-flex">
+												<div class="flex-1 pt-1 ml-2">
+													<h6 class="fw-bold mb-1 text-muted"> token</h6>
+												</div>
+												<div class="d-flex ml-auto align-items-center">
+													<div class="icon-preview">
+														<h6>{{token}}</h6>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<div class="confirmation  mt-3">
+												 <a href="/index/{{id}}/"><button class="btn btn-warning fw-bold">home page</button></div></a>
+												
+											</div>
+								</div>
+									
+											
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<!-- <ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+						</ul> -->
+					</nav>
+					<div class="copyright ml-auto">
+						2020, made by <a href="#"></a>
+					</div>				
+				</div>
+			</footer>
+		</div>
+	</div>
+	
+
+	<script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/core/popper.min.js' %}"></script>
+	<script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+	<!--   Slider Files   -->
+	<script src="{% static 'js/slider/swiper.min.js' %}"></script>
+	<script src="{% static 'js/slider/morphext.min.js' %}"></script>
+	<script src="{% static 'js/slider/scripts.js' %}"></script>
+	<!-- jQuery UI -->
+	<script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+	<!-- Atlantis JS -->
+	<script src="{% static 'js/atlantis.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% include "head.html" %}
+{% load static %}
+<body>
+	<div class="wrapper">
+
+		<div class="main-login m-5">
+			<div class="content">
+				<div class="container">
+					<div class="row">
+                    <div class="col-lg-12">
+                        <div class="card rounded mb-4 mt-5">
+                            <div class="row">
+                                <div class="col-md-6  bg-warning-gradient rounded d-none d-md-block">
+                                	<div class="row justify-content-center">
+                                		<div class="col-md-10">
+                                			 <div class="mt-5 mb-5">
+		                                        <h1 class="text-center text-white">Log In to Enjoy Our Servises.</h1>
+		                                    </div>
+
+                                        	<img src="{% static 'img/undraw_Login_re_4vu2(1).svg' %}" class="w-100">
+                                		</div>
+                                	</div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-right m-2 pt-5">
+                                        <h6 class="mr-5 text-muted">Having trouble?<a href="#" class="text-warning  fw-bold">Get Help</a></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" action="/"> {%csrf_token%}
+                                            <div class="mb-5">
+                                                <h3 class="text-muted">Wellcome Back!</h3>
+                                            </div>
+                                             <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                 <label for="">Mobile Number(Interantional preceded by +)</label>
+                                                  <input type="tel" class="form-control"  id="phone-ve"  style="padding-left: 50px !important;">
+                                                   <input id="hidden-ve" type="hidden" name="phone_number" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-3 mb-3 text-center">
+                                                <button type="submit" class="btn btn-warning"><!-- <i class="fas fa-arrow-right"></i> --> SIGN IN</button>
+                                            </div>
+                                            <div class="or text-center">
+                                            	<span class="text-muted">Or Sign in with</span>
+                                            </div>
+                                            <div class="social-media text-center">
+												<a class="btn btn-info btn-twitter btn-sm btn-link" href="#">
+													<span class="btn-label just-icon">
+														<i class="flaticon-twitter"></i>
+													</span>
+												</a>
+												<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#">
+													<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span>
+												</a>
+												<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#">
+													<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span>
+												</a>
+											</div>
+                                        </form>
+                                        <hr>
+                                        <div class="signup  mt-3">
+                                           <h6 class="mt-2 text-center">Don't Have An account? <a href="" class="text-warning fw-bold">SIGN UP</a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src=" {% static 'js/core/popper.min.js' %}"></script>
+	<script src="{% static 'js/core/bootstrap.min.js' %} "></script>
+
+	<!-- jQuery UI -->
+	<script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+
+	<!-- Chart JS -->
+	<script src="{% static 'js/plugin/chart.js/chart.min.js' %} "></script>
+
+	<!-- jQuery Sparkline -->
+	<script src="{% static 'js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+	<!-- Chart Circle -->
+	<script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+
+	<!-- Datatables -->
+	<script src="{% static 'js/plugin/datatables/datatables.min.js' %}"></script>
+
+	<!-- Bootstrap Notify -->
+	<script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+	<!-- jQuery Vector Maps -->
+	<script src="{% static 'js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+	<script src="{% static 'js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+
+	<!-- Sweet Alert -->
+	<script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+	<!-- Atlantis JS -->
+	<script src="{% static 'js/atlantis.min.js' %}"></script>
+
+
+    <script src="{% static 'js/intlTelInput.min.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script>
+    var phone_ve = document.querySelector("#phone-ve");
+    window.intlTelInput(phone_ve , {
+        utilsScript: "js/utils.js",
+      });
+    
+
+      var iti1 = window.intlTelInputGlobals.getInstance(phone_ve);
+      var phone_ven = iti1.getNumber();
+
+
+
+
+      $('#phone-ve').change(function (e){
+        var phone_ve = document.querySelector("#phone-ve");
+        var iti1 = window.intlTelInputGlobals.getInstance(phone_ve);
+        var number = iti1.getNumber(intlTelInputUtils.numberFormat.E164);
+        console.log(number);
+        $("#hidden-ve").val(number);     
+
+      });
+
+    // $('#phone-cs').change(function (e){
+    //     var phone_ve = document.querySelector("#phone-cs");
+    //     var iti1 = window.intlTelInputGlobals.getInstance(phone_ve);
+    //     var number = iti1.getNumber(intlTelInputUtils.numberFormat.E164);
+    //     console.log(number);
+    //     $("#hidden-cs").val(number);     
+
+    //   });
+    </script>
+
+</body>
+</html>

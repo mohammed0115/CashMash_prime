@@ -1,0 +1,577 @@
+{% include "head.html" %}
+{% load static %}
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header bg-warning-gradient">
+
+				<a href="index.html" class="logo">
+					<!-- <img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand"> -->
+					<h3 class="navbar-brand text-white">EnayaPay</h3>
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			  {% include "Navbarheader.html" %}
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		{% include "sidebar.html" %}
+		<!-- End Sidebar -->
+{% include "head.html" %}
+{% load static %}
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header bg-warning-gradient">
+
+				<a href="index.html" class="logo">
+					<!-- <img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand"> -->
+					<h3 class="navbar-brand text-white">EnayaPay</h3>
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			  {% include "Navbarheader.html" %}
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		{% include "sidebar.html" %}
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+				<div class="panel-header bg-warning-gradient">
+					<div class="page-inner py-4">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row"><h2 class="text-white pb-2 fw-bold d-inline">Telecom</h2>
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body telecom-img">
+								<ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center" id="pills-tab-with-icon" role="tablist">
+										<li class="nav-item submenu">
+											<a class="nav-link active p-0" id="pills-zain-tab-icon" data-toggle="pill" href="#pills-zain-icon" role="tab" aria-controls="pills-zain-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="{% static 'img/zain.jpg' %}" alt="..." class="avatar-img rounded">
+												</div>
+
+											</a>
+
+
+										</li>
+										<li class="nav-item submenu">
+											<a class="nav-link p-0" id="pills-mtn-tab-icon" data-toggle="pill" href="#pills-mtn-icon" role="tab" aria-controls="pills-mtn-icon" aria-selected="false">
+												<div class="avatar">
+													<img src="{% static 'img/mtn.png' %}" alt="..." class="avatar-img rounded">
+												</div>
+
+											</a>
+										</li>
+										<li class="nav-item submenu">
+											<a class="nav-link p-0" id="pills-sudani-tab-icon" data-toggle="pill" href="#pills-sudani-icon" role="tab" aria-controls="pills-sudani-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="{% static 'img/sudani.jpeg' %}" alt="..." class="avatar-img rounded">
+												</div>
+
+											</a>
+										</li>
+									<!-- 	<li class="nav-item submenu ">
+											<a class="nav-link p-0" id="pills-canar-tab-icon" data-toggle="pill" href="#pills-canar-icon" role="tab" aria-controls="pills-canar-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="{% static 'img/canar.jpeg' %}" alt="..." class="avatar-img rounded">
+												</div>
+
+											</a>
+										</li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
+
+
+
+
+
+
+
+
+
+										<div class="tab-pane fade active show" id="pills-zain-icon" role="tabpanel" aria-labelledby="pills-zain-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+											
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form  method="post" action="/telecom/">
+																	<div class="row">
+																		<input type="hidden" value="0010010001"  name="payee_id">
+																		<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																		<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+																		
+																        <div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	     </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																		
+																	
+																		<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																		<div class="form-group col-md-12">
+																			<button class="btn btn-warning" type="submit">Pay</button>
+																		</div>
+																	</div>
+													    </form>
+													</div>
+
+
+
+
+
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form  method="post" action="/telecom/">
+																	<div class="row">
+																		<input type="hidden" value="0010010002"  name="payee_id">
+																		<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																		<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+																		
+																<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																		<div class="form-group col-md-12">
+																			<button class="btn btn-warning" type="submit">Pay</button>
+																		</div>
+																	</div>
+																</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="tab-pane fade" id="pills-mtn-icon" role="tabpanel" aria-labelledby="pills-mtn-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+											<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+												<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form  method="post" action="/telecom/">
+														   <div class="row">
+															<input type="hidden" value="0010010003"  name="payee_id">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													
+
+
+
+
+
+
+
+
+
+
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form  method="post" action="/telecom/">
+														<div class="row">
+														<input type="hidden" value="0010010004"  name="payee_id">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															      <div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+										<div class="tab-pane fade " id="pills-sudani-icon" role="tabpanel" aria-labelledby="pills-sudani-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													<!-- <li class="nav-item">
+														<a class="nav-link" id="pills-Inquiry-tab" data-toggle="pill" href="#pills-Inquiry" role="tab" aria-controls="pills-Inquiry" aria-selected="false">Bill Inquiry</a>
+													</li> -->
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form  method="post" action="/telecom/">
+														    <div class="row">
+																 <input type="hidden" value="0010010005"  name="payee_id">
+																	<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																	</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form  method="post" action="/telecom/">
+														    <div class="row">
+															 <input type="hidden" value="0010010005"  name="payee_id">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+									<!-- 	<div class="tab-pane fade" id="pills-canar-icon" role="tabpanel" aria-labelledby="pills-canar-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Inquiry-tab" data-toggle="pill" href="#pills-Inquiry" role="tab" aria-controls="pills-Inquiry" aria-selected="false">Bill Inquiry</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form >
+															<div class="row">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Inquiry" role="tabpanel" aria-labelledby="pills-Inquiry-tab">
+														<form >
+															<div class="row">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form >
+															<div class="row">
+																	<div class="form-group col-md-6">
+																			<label for="">Phone Number</label>
+																			<input type="text" name="payment_info" class="form-control" id="" placeholder="Enter phone">
+																		</div>
+																<div class="form-group col-md-6">
+																			<label for="">Card Number</label>
+																			<input type="text" name="card_number"  class="form-control" id="" placeholder="">
+																		</div>
+															<div class="form-group col-md-6">
+																		    <label class="text-muted" for="">Expiry Date</label>
+																			<input type="text" class="form-control" name="expiration_date" placeholder="MM/YY">
+																	   </div>
+																		
+																		<div class="form-group col-md-6">
+																			<label for="">CVV</label>
+																			<input type="text" name="cvv"  maxlength="3" minlength="3" class="form-control" id="" placeholder="">
+																		</div>
+																	<div class="form-group col-md-6">
+																			<label for="">Amount</label>
+																			<input type="text" name="amount" class="form-control" id="" placeholder="">
+																		</div>
+																<div class="form-group col-md-12">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div> -->
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<div class="container-fluid">
+					<!-- <nav class="pull-left">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+						</ul>
+					</nav> -->
+					<div class="copyright ml-auto">
+						2020, made by <a href="#"></a>
+					</div>				
+				</div>
+			</footer>
+		</div>
+	</div>
+
+		<!--   Core JS Files   -->
+	<script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/core/popper.min.js' %}"></script>
+	<script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+	<!--   Slider Files   -->
+	<script src="{% static 'js/slider/swiper.min.js' %}"></script>
+	<script src="{% static 'js/slider/morphext.min.js' %}"></script>
+	<script src="{% static 'js/slider/scripts.js' %}"></script>
+	<!-- jQuery UI -->
+	<script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+	<!-- Atlantis JS -->
+	<script src="{% static 'js/atlantis.min.js' %}"></script>
+</body>
+</html>

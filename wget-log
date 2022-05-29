@@ -1,0 +1,22 @@
+--2021-03-08 12:32:10--  https://172.16.199.1:8877/isAlive
+Connecting to 172.16.199.1:8877... failed: Connection timed out.
+Retrying.
+
+--2021-03-08 12:34:21--  (try: 2)  https://172.16.199.1:8877/isAlive
+Connecting to 172.16.199.1:8877... failed: Connection timed out.
+Retrying.
+
+--2021-03-08 15:16:40--  (try: 3)  https://172.16.199.1:8877/isAlive
+Connecting to 172.16.199.1:8877... failed: Connection timed out.
+Retrying.
+
+--2021-03-08 15:18:54--  (try: 4)  https://172.16.199.1:8877/isAlive
+Connecting to 172.16.199.1:8877... failed: Connection timed out.
+Retrying.
+
+--2021-03-08 15:21:08--  (try: 5)  https://172.16.199.1:8877/isAlive
+Connecting to 172.16.199.1:8877... connected.
+ERROR: cannot verify 172.16.199.1's certificate, issued by ‘CN=External Testing Systems’:
+  Self-signed certificate encountered.
+    ERROR: certificate common name ‘Consumer_Test’ doesn't match requested host name ‘172.16.199.1’.
+To connect to 172.16.199.1 insecurely, use `--no-check-certificate'.

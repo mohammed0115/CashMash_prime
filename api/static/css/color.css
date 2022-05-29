@@ -1,0 +1,5 @@
+.bg-warning-gradient {
+    background: #ffad46 !important;
+    background: -webkit-linear-gradient(legacy-direction(-45deg),#e1810b,#46e3ff) !important;
+    background: linear-gradient(-45deg,#0bcde1,#4652ff) !important;
+}

@@ -1,0 +1,39 @@
+.sidebar.sidebar-style-2 .nav.nav-primary > .nav-item.active > a{
+  background: #23ede3 !important;
+  box-shadow: none !important;
+}
+.navbar[class*="bg-"]{
+  border: none !important;
+}
+a.card{
+text-decoration: none !important;
+}
+.logo-header .navbar-toggler .navbar-toggler-icon,
+.logo-header .more{
+  color: #fff !important;
+}
+.main-header{
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.41);
+}
+.swiper-slide{
+	width: 355px !important;
+}
+.telecom-img .nav-pills.nav-secondary .nav-link.active{
+	background-color: #23ede3 !important;
+	border: 5px solid #23dfed !important;
+}
+.nav-pills.nav-secondary .nav-link.active{
+	background-color: #23b4ed !important;
+	border: 1px solid #23b4ed !important;
+}
+@media (max-width: 767.98px) {
+  .telecom-tabs .nav-pills .nav-link{
+  		padding: 16px !important;
+	}
+}
+a.text-warning:focus, a.text-warning:hover{
+	color: #fff;
+}
+.btn-border{
+	border: 1px solid #23b4ed;
+} 
