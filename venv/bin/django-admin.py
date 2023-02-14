@@ -1,4 +1,4 @@
-#!/var/www/sadad_pay_backen/venv/bin/python3
+#!/var/www/CashMash_prime/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

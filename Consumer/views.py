@@ -42,9 +42,9 @@ from pytz import timezone
 from django.conf import settings
 from rest_framework.decorators import api_view,authentication_classes,permission_classes
 from CardManagement.serializers import VirtualCardSerializer
-base_response = {"responseCode": "400",
-                              "responseMessage": "Error",
-                              "responseStatus": "Error"
+base_response = {"responseCode": "",
+                              "responseMessage": "",
+                              "responseStatus": ""
                               }
 @api_view(['POST'])
 @authentication_classes(())
@@ -52,7 +52,7 @@ base_response = {"responseCode": "400",
 def get_public_key(request):
         response = base_response
         data = {}
-        data["applicationId"] = "SADAD"
+        data["applicationId"] = "CashMash"
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
@@ -71,7 +71,7 @@ def get_public_key(request):
 def echoTest(request):
         response = base_response
         data = {}
-        data["applicationId"] = "SADAD"
+        data["applicationId"] = "CashMash"
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
