@@ -160,7 +160,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 EBS_CONSUMER_API = {
-    'END_POINT': 'https://196.1.218.82:8181/QAConsumer',
+    'END_POINT': 'https://172.16.199.1:8877/QAConsumer',
     'APPLICATION_ID': 'CashMash',
     'VERIFY_SSL': False,  # See line EBS_MERCHANT_API.VERIFY_SSL.
     'TIMEOUT': 60,  # 60 seconds
@@ -214,3 +214,5 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'access_token',
     'JWT_AUTH_COOKIE': None,
 }
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+FILE_UPLOAD_PERMISSIONS = 0o644
