@@ -19,10 +19,12 @@ from Consumer import views
 from rest_framework import routers
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.routers import DefaultRouter
+from django.conf import settings
+from django.conf.urls.static import static
+
 admin.site.site_header = 'CashMash Prime'
-# admin.site.site_header = 'CashMash Prime'                    # default: "Django Administration"
 admin.site.index_title = 'CashMash Prime'                 # default: "Site administration"
-admin.site.site_title = 'CashMash Prime' # default: "Django site admi
+admin.site.site_title = 'CashMash Prime' 
 router = DefaultRouter()
 # router.register(r'top_up', views.TopUpTransactionViewSet, basename='cardholder_top_up_transaction')
 urlpatterns = [
@@ -58,3 +60,7 @@ urlpatterns = [
 
     
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+               static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
