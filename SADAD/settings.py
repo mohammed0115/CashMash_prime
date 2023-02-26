@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'APIKEY',
     'api',
+    'EBS_CONSUMER_API',
     'otp'
 
 ]
