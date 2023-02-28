@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 admin.site.site_header = 'CashMash Prime'
 admin.site.index_title = 'CashMash Prime'                 # default: "Site administration"
 admin.site.site_title = 'CashMash Prime' 
+admin.autodiscover()
 router = DefaultRouter()
 # router.register(r'top_up', views.TopUpTransactionViewSet, basename='cardholder_top_up_transaction')
 urlpatterns = [

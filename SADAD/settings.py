@@ -90,8 +90,26 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
+CREATE USER 'CashMash'@'localhost' IDENTIFIED BY 'CashMash@2023##';
 
+GRANT ALL PRIVILEGES ON *.* TO 'CashMash'@'localhost' WITH GRANT OPTION
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'users': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'CashMash',
+        'USER': 'CashMash',
+        'PASSWORD': 'CashMash@2023##',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
 
+}
+"""
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -193,6 +211,7 @@ CORS_ALLOW_HEADERS = default_headers + (
     'API-KEY',
 )
 STATIC_ROOT = BASE_DIR / 'static'
+#STATICFILES_DIRS = ( BASE_DIR / 'static')
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER': 'rest_framework_jwt.utils.jwt_encode_handler',
     'JWT_DECODE_HANDLER': 'rest_framework_jwt.utils.jwt_decode_handler',
@@ -217,3 +236,5 @@ JWT_AUTH = {
 }
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 FILE_UPLOAD_PERMISSIONS = 0o644
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
