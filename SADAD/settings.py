@@ -180,7 +180,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 EBS_CONSUMER_API = {
     'END_POINT': 'https://172.16.199.1:8877/QAConsumer',
-    'APPLICATION_ID': 'CashMash',
+    'APPLICATION_ID': 'ITQAN',
     'VERIFY_SSL': False,  # See line EBS_MERCHANT_API.VERIFY_SSL.
     'TIMEOUT': 60,  # 60 seconds
     'TIME_ZONE': 'Africa/Khartoum'  # This is used to parse datetime to the time zone EBS required

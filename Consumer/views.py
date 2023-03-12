@@ -52,7 +52,7 @@ base_response = {"responseCode": "",
 def get_public_key(request):
         response = base_response
         data = {}
-        data["applicationId"] = "CashMash"
+        data["applicationId"] = "ITQAN"
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
@@ -71,7 +71,7 @@ def get_public_key(request):
 def echoTest(request):
         response = base_response
         data = {}
-        data["applicationId"] = "CashMash"
+        data["applicationId"] = "ITQAN"
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
