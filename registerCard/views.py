@@ -3,6 +3,7 @@ from Consumer.EBS_Request import EBSRequestAPIView
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import *
+import json
 class RegisterGolenCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
@@ -39,7 +40,7 @@ class VirtualCard(EBSRequestAPIView):
                 Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
                 
 
-            return Response(ebs_response)
+            return Response(json.loads(ebs_response.text))
         else:
             return Response(serializer.errors)
 class RegisterList(generics.ListAPIView):
