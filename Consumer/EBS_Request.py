@@ -27,7 +27,6 @@ class BaseEBSAPIView(views.APIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        # serializer.save(created_by=request.user)
         # serializer = self.get_serializer(data=request.data)
         # serializer.is_valid(raise_exception=True)
         payload = self.get_payload_from_input(serializer.data)
