@@ -154,11 +154,11 @@ class BaseEBSAPIView(views.APIView):
         else:
             raise AttributeError("service_url is not defined")
 
-    # def get_serializer_class(self):
-    #     if self.serializer_class:
-    #         return self.serializer_class
-    #     else:
-    #         raise AttributeError("serializer_class is not defined")
+    def get_serializer_class(self):
+        if self.serializer_class:
+            return self.serializer_class
+        else:
+            raise AttributeError("serializer_class is not defined")
 
     def get_serializer_context(self):
         """
