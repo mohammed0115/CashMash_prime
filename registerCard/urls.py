@@ -28,7 +28,7 @@ urlpatterns = [
     ),
    path(
         "register/Virtual/",
-        csrf_exempt(registerSilverCard.as_view()),
+        registerSilverCard.as_view(),
         name="register_VirtualCard",
     ),
     path(
