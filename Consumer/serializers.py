@@ -23,10 +23,7 @@ class VoucherNumberValidator(RegexValidator):
             _('Voucher Number should have at least 10 but not more than 20 digits.'))
 
 class BaseConsumerAPISerializer(serializers.Serializer):
-    tranDateTime = serializers.DateTimeField(format='%d%m%y%H%M%S',
-                                    #  input_formats=['iso-8601'],
-                                            #  default_timezone=pytz.timezone(settings.EBS_CONSUMER_API["TIME_ZONE"]),
-                                             allow_null=False)
+    tranDateTime = serializers.DateTimeField()
     # the regex is for accepting a uuid version 1 or version 4, checks case ignorant hex chars and groupings
     UUID = serializers.RegexField('^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',max_length=36, min_length=36, allow_blank=False)
     class Meta:
