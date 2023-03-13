@@ -24,21 +24,21 @@ class VirtualCard(EBSRequestAPIView):
     serializer_class = VirtualCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        # serializer = self.get_serializer(data=request.data)
-        # serializer.is_valid(raise_exception=True)
-        payload = self.get_payload_from_input(serializer.data)
-        self.validated_data = serializer.validated_data
-        try:
-            ebs_response = self.ebs_post(payload)
-        except requests.exceptions.ConnectionError:
-            # logger = self.get_logger()
-            url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
-            logger.error("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
-            raise
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                logger.error("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                raise
 
-        return self.handle_ebs_response(ebs_response)
+            return self.handle_ebs_response(ebs_response)
 
 class RegisterList(generics.ListAPIView):
     queryset = Register.objects.all()
