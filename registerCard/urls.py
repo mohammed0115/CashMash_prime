@@ -5,7 +5,7 @@ from .views import (
     RegisterGolenCard,
     RegisterAgentCard,
     registerSilverCard,
-    registerSilverCard,
+    VirtualCard,
     RegisterList
     
 )
@@ -28,7 +28,7 @@ urlpatterns = [
     ),
    path(
         "register/Virtual/",
-        registerSilverCard.as_view(),
+        VirtualCard.as_view(),
         name="register_VirtualCard",
     ),
     path(
