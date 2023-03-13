@@ -27,6 +27,9 @@ class BaseEBSAPIView(views.APIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        # serializer.save(created_by=request.user)
+        # serializer = self.get_serializer(data=request.data)
+        # serializer.is_valid(raise_exception=True)
         payload = self.get_payload_from_input(serializer.data)
         self.validated_data = serializer.validated_data
         try:
@@ -151,11 +154,11 @@ class BaseEBSAPIView(views.APIView):
         else:
             raise AttributeError("service_url is not defined")
 
-    def get_serializer_class(self):
-        if self.serializer_class:
-            return self.serializer_class
-        else:
-            raise AttributeError("serializer_class is not defined")
+    # def get_serializer_class(self):
+    #     if self.serializer_class:
+    #         return self.serializer_class
+    #     else:
+    #         raise AttributeError("serializer_class is not defined")
 
     def get_serializer_context(self):
         """
