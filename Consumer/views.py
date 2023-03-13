@@ -42,6 +42,7 @@ from pytz import timezone
 from django.conf import settings
 from rest_framework.decorators import api_view,authentication_classes,permission_classes
 from CardManagement.serializers import VirtualCardSerializer
+from EBS_CONSUMER_API.models import ebs_consumer
 base_response = {"responseCode": "",
                               "responseMessage": "",
                               "responseStatus": ""
@@ -71,7 +72,7 @@ def get_public_key(request):
 def echoTest(request):
         response = base_response
         data = {}
-        data["applicationId"] = "ITQAN"
+        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
@@ -97,7 +98,7 @@ def balance_inquiry_for_PAN(request):
             "tranCurrency": "SDG",
             "mbr": "0"
         }
-        data["applicationId"] = "SADAD"
+        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
         data["PAN"] = request_data["PAN"]
         data["expDate"] = request_data["expDate"]
         data["tranCurrency"] = request_data["tranCurrency"]
@@ -106,7 +107,7 @@ def balance_inquiry_for_PAN(request):
         data["tranDateTime"] = request_data["tranDateTime"]
         
         print(data)
-        resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getBalance", json=data, verify=False).text)
+        resp = json.loads(requests.post(ebs_consumer.objects.first().END_POINT+ "/getBalance", json=data, verify=False).text)
         response["responseMessage"] = resp["responseMessage"]
         response["responseCode"] = resp["responseCode"]
         response["responseStatus"] = resp["responseStatus"]
