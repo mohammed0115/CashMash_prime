@@ -32,7 +32,7 @@ class VirtualCard(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
-                ebs_response = self.ebs_post(payload)
+                ebs_response = self.ebs_post(request.data)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
                 url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
