@@ -33,7 +33,7 @@ class EntityUserAPISerializer(serializers.Serializer):
     # userPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
     entityId        = serializers.CharField(max_length=40,)
     entityType      = serializers.CharField(max_length=20)
-    entityGroup           = serializers.CharField(default=1,max_length=1,required=False,allow_null=False)
+    entityGroup           = serializers.CharField(max_length=2,required=False,allow_null=False)
     
     # def validate_entityType(self, entityType):
     #     """ Check card has not expired. """
