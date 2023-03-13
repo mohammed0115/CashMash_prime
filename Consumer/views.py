@@ -197,7 +197,24 @@ class CardTransferView(EBSRequestAPIView):
     serializer_class = CardTransferAPISerializer
     ebs_service_path = 'doCardTransfer'
     transaction_model_class = CardTransferTransaction
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
 
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
     def get_transaction_request_fields(self):
         fields = {}
         fields.update(self.common_transaction_request_fields)
@@ -250,7 +267,24 @@ class ServicePaymentView(EBSRequestAPIView):
     serializer_class = ServicePaymentConsumerAPISerializer
     ebs_service_path = 'specialPayment'
     transaction_model_class = ServicePaymentTransaction
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
 
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
     def get_transaction_request_fields(self):
         fields = {}
         fields.update(self.common_transaction_request_fields)
@@ -268,6 +302,24 @@ class GetPayeeList(EBSRequestAPIView):
     permission_classes = ()
     serializer_class = BaseConsumerAPISerializer
     ebs_service_path = 'getPayeesList'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
 
 class GetBill(EBSRequestAPIView):
@@ -280,6 +332,24 @@ class GetBill(EBSRequestAPIView):
     permission_classes = ()
     serializer_class = BillInquiryConsumerAPISerializer
     ebs_service_path = 'getBill'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
 
 class PaymentView(EBSRequestAPIView):
@@ -293,6 +363,24 @@ class PaymentView(EBSRequestAPIView):
     serializer_class = PaymentConsumerAPISerializer
     ebs_service_path = 'payment'
     transaction_model_class = PaymentTransaction
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
     def get_transaction_request_fields(self):
         fields = {}
@@ -318,6 +406,24 @@ class TransactionStatusView(EBSRequestAPIView):
     permission_classes = ()
     serializer_class = TransactionStatusConsumerAPISerializer
     ebs_service_path = 'getTransactionStatus'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
     def get_response_data(self, ebs_response_content_json):
         ebs_response_content_json = super(TransactionStatusView, self).get_response_data(ebs_response_content_json)
@@ -380,6 +486,24 @@ class PayeeListView(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = BaseConsumerAPISerializer
     ebs_service_path = 'getPayeesList'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class EchoTestView(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
@@ -413,7 +537,24 @@ class RequestPinChangeView(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = ChangeCardsIpin
     ebs_service_path = 'changeIPin'
-    
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
     
     
 class register(EBSRequestAPIView):
@@ -422,21 +563,93 @@ class register(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = RegisterSerializer
     ebs_service_path = 'register'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class completeCardRegistration(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = CompletecardregistrationSerializer
     ebs_service_path = 'completeCardRegistration'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class changePassword(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = ChangePasswordSerializer
     ebs_service_path = 'changePassword'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class forgetPassword(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = ForgetPasswordSerializer
     ebs_service_path = 'forgetPassword'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
     
 
 
@@ -445,6 +658,24 @@ class VirtualCard(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = VirtualCardSerializer
     ebs_service_path = 'register'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
 
 
@@ -458,12 +689,47 @@ class doQRRefund(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = QRRefundSerializer
     ebs_service_path = 'doQRRefund'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class doQRPurchase(EBSRequestAPIView):
     permission_classes = (HasValidAPIKey,)
     authentication_classes = ()
     serializer_class = QRPurchaseSerializer
     ebs_service_path = 'doQRPurchase'
-    
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)    
     
     
 
