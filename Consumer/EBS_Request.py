@@ -2,7 +2,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from EBS_CONSUMER_API.models import ebs_consumer
 import uuid
 from django.conf import settings
 from rest_framework import views
@@ -81,7 +81,7 @@ class BaseEBSAPIView(views.APIView):
     def is_ebs_200_response_successful(self, ebs_response_json, raise_exception=False):
         if str(ebs_response_json['responseCode']) != '0':
             url = self.ebs_base_url + '/' + self.ebs_service_path
-            status_code = 200
+            # status_code = 200
             response_data = self._remove_sensitive_info(json.dumps(ebs_response_json))
             if hasattr(self, 'request') and hasattr(self.request, 'data')and self.request.data:
                 request_data = self._remove_sensitive_info(json.dumps(self.request.data))
@@ -93,7 +93,7 @@ class BaseEBSAPIView(views.APIView):
             else:
                 return False
         else:
-            status_code = 0
+            # status_code = 0
             response_data = self._remove_sensitive_info(json.dumps(ebs_response_json))
             url = self.ebs_base_url + '/' + self.ebs_service_path
             if self.request.data:
@@ -115,8 +115,7 @@ class BaseEBSAPIView(views.APIView):
             ebs_base_url += '/'
         url = ebs_base_url + ebs_service_path
         print(payload)
-        ebs_response = requests.post(url=url, json=payload, timeout=self.get_timeout(), verify=self.verify_ssl)
-    
+        ebs_response = requests.post(url=url, json=payload, timeout=self.get_timeout(), verify=self.verify_ssl)    
         return ebs_response
 
     def get_ebs_base_url(self):
@@ -171,16 +170,20 @@ class BaseEBSAPIView(views.APIView):
         
         
 class EBSRequestAPIView(BaseEBSAPIView):
-    ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
-    verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
-    timeout = settings.EBS_CONSUMER_API["TIMEOUT"]
-    application_id = settings.EBS_CONSUMER_API["APPLICATION_ID"]
-
+    # ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
+    # verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
+    # timeout = settings.EBS_CONSUMER_API["TIMEOUT"]
+    # application_id = settings.EBS_CONSUMER_API["APPLICATION_ID"]
+    ebs_base_url = ebs_consumer.objects.first().END_POINT
+    verify_ssl =ebs_consumer.objects.first().VERIFY_SSL
+    timeout = ebs_consumer.objects.first().TIMEOUT
+    application_id = ebs_consumer.objects.first().APPLICATION_ID
+   
     def get_payload_from_input(self, input_data):
         payload = {}
         payload.update(input_data)
         payload.update({'applicationId': self.application_id})
-        # payload.update({'UUID':str(uuid.uuid4())})
+        payload.update({'UUID':str(uuid.uuid4())})
         return payload
 
     def get_response_data(self, ebs_response_content_json):

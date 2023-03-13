@@ -77,12 +77,12 @@ def echoTest(request):
         
         resp = json.loads(requests.post(
             settings.EBS_CONSUMER_API["END_POINT"]+ "/isAlive", json=data, verify=False).text)
-        # response["responseMessage"] = resp["responseMessage"]
-        # response["responseCode"] = resp["responseCode"]
-        # response["responseStatus"] = resp["responseStatus"]
-        # response["pubKeyValue"] = resp["pubKeyValue"]
-        # response["UUID"]  = data["UUID"]
-        # print(data["UUID"])
+        response["responseMessage"] = resp["responseMessage"]
+        response["responseCode"] = resp["responseCode"]
+        response["responseStatus"] = resp["responseStatus"]
+        response["pubKeyValue"] = resp["pubKeyValue"]
+        response["UUID"]  = data["UUID"]
+        print(data["UUID"])
         return Response(resp)
 @api_view(['POST'])
 @authentication_classes(())
@@ -106,11 +106,11 @@ def balance_inquiry_for_PAN(request):
         
         print(data)
         resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getBalance", json=data, verify=False).text)
-        # response["responseMessage"] = resp["responseMessage"]
-        # response["responseCode"] = resp["responseCode"]
-        # response["responseStatus"] = resp["responseStatus"]
-        # response["balance"] = resp["balance"]
-        # print(response)
+        response["responseMessage"] = resp["responseMessage"]
+        response["responseCode"] = resp["responseCode"]
+        response["responseStatus"] = resp["responseStatus"]
+        response["balance"] = resp["balance"]
+        print(response)
         return Response(resp)
 class BaseConsumerTransactionView(EBSRequestAPIView):
     # key is the model fields name, value is the field name in EBS
