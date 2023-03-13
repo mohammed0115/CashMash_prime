@@ -32,14 +32,14 @@ class EntityUserAPISerializer(serializers.Serializer):
     # userName        = serializers.CharField(max_length=250,required=False,allow_null=False)
     # userPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
     entityId        = serializers.CharField(max_length=40,)
-    entityType      = serializers.CharField(max_length=20,defualt="Phone No")
+    entityType      = serializers.CharField(max_length=20)
     entityGroup           = serializers.CharField(default=1,max_length=1,required=False,allow_null=False)
     
-    def validate_entityType(self, entityType):
-        """ Check card has not expired. """
-        entitylitst=['Phone No','Meter No','Credit Card','Cash Card','Mobile Wallet']
-        if entityType not in entitylitst:
-            raise serializers.ValidationError(entitylitst, code='invalid')
+    # def validate_entityType(self, entityType):
+    #     """ Check card has not expired. """
+    #     entitylitst=['Phone No','Meter No','Credit Card','Cash Card','Mobile Wallet']
+    #     if entityType not in entitylitst:
+    #         raise serializers.ValidationError(entitylitst, code='invalid')
 class UserNameSerializer(serializers.Serializer):
     userName        = serializers.CharField(max_length=250,required=False,allow_null=False)
 class extraInforSerializer(serializers.Serializer):
