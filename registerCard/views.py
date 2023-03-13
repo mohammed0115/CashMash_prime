@@ -36,11 +36,12 @@ class VirtualCard(EBSRequestAPIView):
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
                 url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
-                logger.error("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
-                raise
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
 
             return Response(ebs_response)
-
+        else:
+            return Response(serializer.errors)
 class RegisterList(generics.ListAPIView):
     queryset = Register.objects.all()
     serializer_class = RegisterSerializer
