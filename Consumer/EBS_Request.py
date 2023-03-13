@@ -25,7 +25,7 @@ class BaseEBSAPIView(views.APIView):
     verify_ssl = True
     validated_data = None
     def post(self, request, *args, **kwargs):
-        # serializer = self.get_serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         if serializer.is_valid():
             payload = self.get_payload_from_input(serializer.data)
