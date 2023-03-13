@@ -187,6 +187,7 @@ EBS_CONSUMER_API = {
     'TIME_ZONE': 'Africa/Khartoum'  # This is used to parse datetime to the time zone EBS required
 }
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%d%m%y%H%M%S",
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
