@@ -25,6 +25,21 @@ class BaseEBSAPIView(views.APIView):
     verify_ssl = True
     validated_data = None
     def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        payload = self.get_payload_from_input(serializer.data)
+        self.validated_data = serializer.validated_data
+        try:
+            ebs_response = self.ebs_post(payload)
+        except requests.exceptions.ConnectionError:
+            # logger = self.get_logger()
+            url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+            logger.error("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+            raise
+
+        return self.handle_ebs_response(ebs_response)
+    """    
+    def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         # serializer.is_valid(raise_exception=True)
         if serializer.is_valid():
@@ -39,7 +54,7 @@ class BaseEBSAPIView(views.APIView):
             return self.handle_ebs_response(ebs_response)
         else:
             return Response(serializer.errors)
-
+   """
     # def post(self,request, *args, **kwargs):
         
     #     Url=self.ebs_base_url+"/"+self.ebs_service_path
