@@ -74,7 +74,7 @@ class BankSerializer(serializers.Serializer):
 
 class RegisterSerializer(EntityUserAPISerializer,UserNameSerializer,
                          userPasswordserializer,BaseConsumerAPISerializer,BankSerializer,CustomerSerializer,CardRequiredInfoAPISerializer,PanSerializer):
-    registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
+    registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=3,allow_null=False)
     fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
     financialInstitutionId=serializers.CharField(max_length=4,allow_null=False)
     panCategory           =serializers.CharField(max_length=10,allow_null=False)
