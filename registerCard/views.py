@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Consumer.EBS_Request import EBSRequestAPIView
 from rest_framework import generics
+from rest_framework.response import Response
 from .serializers import *
 class RegisterGolenCard(EBSRequestAPIView):
     permission_classes = ()
@@ -38,7 +39,7 @@ class VirtualCard(EBSRequestAPIView):
                 logger.error("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
                 raise
 
-            return self.handle_ebs_response(ebs_response)
+            return Response(ebs_response)
 
 class RegisterList(generics.ListAPIView):
     queryset = Register.objects.all()
