@@ -109,7 +109,7 @@ base_response = {"responseCode": "",
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes(())
-def echoTest(request):
+def get_public_key(request):
         response = base_response
         data = {}
         data["applicationId"] = "ITQAN"
