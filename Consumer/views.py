@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .EBS_Request import EBSRequestAPIView
 from .serializers import BaseConsumerAPISerializer,CardTransferAPISerializer
+from datetime import timedelta
 
 import re
 import requests
@@ -79,7 +80,8 @@ def get_public_key(request):
                 
                 date_1 = datetime.datetime.now().strftime( "%m/%d/%y")
                 key.start_date=date_1
-                end_date = date_1 + datetime.timedelta(days=3)
+                Begindate = datetime.strptime(date_1, "%Y-%m-%d")
+                end_date = Begindate + datetime.timedelta(days=3)
                 resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
                 # resp = json.loads(requests.post("http://49.12.212.193/GetPublicKey/", json=data, verify=False).text)
                 key.responseMessage = resp["responseMessage"]
@@ -94,7 +96,8 @@ def get_public_key(request):
                 key=ModelPublickey()
                 date_1 = datetime.datetime.now().strftime("%m/%d/%y")
                 key.start_date=date_1
-                end_date = date_1 + datetime.timedelta(days=3)
+                Begindate = datetime.strptime(date_1, "%Y-%m-%d")
+                end_date = Begindate + datetime.timedelta(days=3)
                 resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
                 key.responseMessage = resp["responseMessage"]
                 key.responseCode = resp["responseCode"]
