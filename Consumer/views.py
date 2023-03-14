@@ -59,7 +59,7 @@ base_response = {"responseCode": "",
 @authentication_classes(())
 @permission_classes(())
 def get_public_key(request):
-        # key=ModelPublickey.objects.get(id=1)
+        
         response = base_response
         data = {}
         data["applicationId"] = "ITQAN"
