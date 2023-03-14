@@ -119,7 +119,7 @@ def Regsiter(request):
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         data.update(request.POST)
         resp = json.loads(requests.post(
-            settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
+            settings.EBS_CONSUMER_API["END_POINT"]+ "/register", json=data, verify=False).text)
       
         return Response(resp)    
 
