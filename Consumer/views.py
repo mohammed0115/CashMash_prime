@@ -60,13 +60,14 @@ base_response = {"responseCode": "",
 @permission_classes(())
 def get_public_key(request):
         # key=ModelPublickey.objects.get(id=1)
+        response = base_response
+        data = {}
+        data["applicationId"] = "ITQAN"
+        data["UUID"] = str(uuid.uuid4())
+        data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         try:
             key=ModelPublickey.objects.get(id=1)
-            response = base_response
-            data = {}
-            data["applicationId"] = "ITQAN"
-            data["UUID"] = str(uuid.uuid4())
-            data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
+            
             if IsExpiredPublicKey(key.expired):
                 
                 data["responseMessage"] = key.responseMessage
@@ -84,9 +85,21 @@ def get_public_key(request):
                 key.responseStatus = resp["responseStatus"]
                 key.pubKeyValue = resp["pubKeyValue"]
                 key.expired  = end_date
+                key.save()
                 return Response(response)
         except ObjectDoesNotExist:
-            return Response({})
+                key=ModelPublickey()
+                date_1 = datetime.datetime.new().strptime(start_date, "%m/%d/%y")
+                end_date = date_1 + datetime.timedelta(days=3)
+                resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
+                # resp = json.loads(requests.post("http://49.12.212.193/GetPublicKey/", json=data, verify=False).text)
+                key.responseMessage = resp["responseMessage"]
+                key.responseCode = resp["responseCode"]
+                key.responseStatus = resp["responseStatus"]
+                key.pubKeyValue = resp["pubKeyValue"]
+                key.expired  = end_date
+                key.save()
+                return Response(response)
             
 @api_view(['POST'])
 @authentication_classes(())
