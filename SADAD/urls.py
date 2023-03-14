@@ -45,7 +45,7 @@ urlpatterns = [
     #balance_inquiry_for_PAN
     path('EchoTest/', views.EchoTestView.as_view()),
     path('RequestPinChange/', views.RequestPinChangeView.as_view()),
-    # path('VirtualCard/', views.VirtualCard.as_view()),
+    path('Regsiter/', ,csrf_exempt(views.Regsiter)),
     path('completeCardRegistration/', views.completeCardRegistration.as_view()),
     path('forgetPassword/', views.forgetPassword.as_view()),
     path('changePassword/', views.changePassword.as_view()),

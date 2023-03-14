@@ -106,6 +106,24 @@ base_response = {"responseCode": "",
 #                 key.expired  = end_date
 #                 key.save()
 #                 return Response(response)
+
+#
+@api_view(['POST'])
+@authentication_classes(())
+@permission_classes(())
+def Regsiter(request):
+        response = base_response
+        data = {}
+        data["applicationId"] = "ITQAN"
+        data["UUID"] = str(uuid.uuid4())
+        data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
+        data.update(request.POST)
+        resp = json.loads(requests.post(
+            settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
+      
+        return Response(resp)    
+
+
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes(())
