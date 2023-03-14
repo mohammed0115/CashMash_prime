@@ -89,7 +89,7 @@ def get_public_key(request):
                 return Response(response)
         except ObjectDoesNotExist:
                 key=ModelPublickey()
-                date_1 = datetime.datetime.new().strptime(start_date, "%m/%d/%y")
+                date_1 = datetime.datetime.now().strptime(start_date, "%m/%d/%y")
                 end_date = date_1 + datetime.timedelta(days=3)
                 resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
                 # resp = json.loads(requests.post("http://49.12.212.193/GetPublicKey/", json=data, verify=False).text)
