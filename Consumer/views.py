@@ -49,7 +49,7 @@ from django.core.exceptions import ObjectDoesNotExist
 def IsExpiredPublicKey(date):
     # import datetime
     d1 = datetime.datetime.strptime(date, "%d/%m/%Y").date()
-    d2 = datetime.datetime.new().strptime( "%d/%m/%Y").date()
+    d2 = datetime.datetime.now().strptime( "%d/%m/%Y").date()
     return d2>d1
 base_response = {"responseCode": "",
                               "responseMessage": "",
