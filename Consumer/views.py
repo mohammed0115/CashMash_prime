@@ -77,8 +77,8 @@ def get_public_key(request):
             else:
                 date_1 = datetime.datetime.new().strptime(start_date, "%m/%d/%y")
                 end_date = date_1 + datetime.timedelta(days=3)
-                # resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
-                resp = json.loads(requests.post("http://49.12.212.193/GetPublicKey/", json=data, verify=False).text)
+                resp = json.loads(requests.post(settings.EBS_CONSUMER_API["END_POINT"]+ "/getPublicKey", json=data, verify=False).text)
+                # resp = json.loads(requests.post("http://49.12.212.193/GetPublicKey/", json=data, verify=False).text)
                 key.responseMessage = resp["responseMessage"]
                 key.responseCode = resp["responseCode"]
                 key.responseStatus = resp["responseStatus"]
