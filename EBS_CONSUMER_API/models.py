@@ -8,7 +8,7 @@ class ebs_consumer(models.Model):
     TIMEOUT =models.IntegerField(default=60)
     TIME_ZONE =models.CharField(max_length=100,default='Africa/Khartoum')
 class ModelPublickey(models.Model):
-    start_date = models.DateField( auto_now=True, auto_now_add=True)
+    start_date = models.DateField( auto_now=True, auto_now_add=False)
     expired = models.DateField(auto_now=False, auto_now_add=False)
     pubKeyValue =models.TextField("")
     responseCode = models.IntegerField()
