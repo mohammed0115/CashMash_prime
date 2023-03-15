@@ -200,7 +200,7 @@ class EBSRequestAPIView(BaseEBSAPIView):
         payload = {}
         payload.update(input_data)
         payload.update({'applicationId': self.application_id})
-        payload.update({'UUID':str(uuid.uuid4())})
+        # payload.update({'UUID':str(uuid.uuid4())})
         return payload
 
     def get_response_data(self, ebs_response_content_json):
