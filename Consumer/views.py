@@ -153,8 +153,8 @@ def echoTest(request):
         response["responseMessage"] = resp["responseMessage"]
         response["responseCode"] = resp["responseCode"]
         response["responseStatus"] = resp["responseStatus"]
-        response["pubKeyValue"] = resp["pubKeyValue"]
-        response["UUID"]  = data["UUID"]
+        # response["pubKeyValue"] = resp["pubKeyValue"]
+        # response["UUID"]  = data["UUID"]
         print(data["UUID"])
         return Response(resp)
 @api_view(['POST'])

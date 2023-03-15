@@ -1,0 +1,64 @@
+.sidebar.sidebar-style-2 .nav.nav-primary > .nav-item.active > a{
+  background: #ed9323 !important;
+  box-shadow: none !important;
+}
+.navbar[class*="bg-"]{
+  border: none !important;
+}
+a.card{
+text-decoration: none !important;
+}
+.logo-header .navbar-toggler .navbar-toggler-icon,
+.logo-header .more{
+  color: #fff !important;
+}
+.main-header{
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.41);
+}
+.swiper-slide{
+	width: 355px !important;
+}
+.telecom-img .nav-pills.nav-secondary .nav-link.active{
+	background-color: #ff9810 !important;
+	border: 5px solid #ff9810 !important;
+}
+.nav-pills.nav-secondary .nav-link.active{
+	background-color: #ff9810 !important;
+	border: 1px solid #ff9810 !important;
+}
+@media (max-width: 767.98px) {
+  .telecom-tabs .nav-pills .nav-link{
+  		padding: 16px !important;
+	}
+}
+a.text-warning:focus, a.text-warning:hover{
+	color: #fff;
+}
+.btn-border{
+	border: 1px solid #ff9810;
+} 
+.logo-header .more{
+	color: #fff;
+}
+.logo-header .logo .navbar-brand{
+	width: 150px !important;
+	height: 60px !important;
+}
+.form-control{
+	border-radius: 2.25rem;
+}
+.image-logo img{
+	width: 150px !important;
+}
+.bg-warning{
+	background-color: #ff9810;
+}
+
+.p-icon{
+	border: 2px solid #fff;
+	top: 30px;
+	z-index:99999999 !important;	
+}
+.btn.select-card{
+	border-radius: 2.25rem;
+}

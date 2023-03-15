@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>bill Payment</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<!-- Fonts and icons -->
+	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<!-- CSS Files -->
+	
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/swiper.css">
+	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
+	<link rel="stylesheet" href="../assets/css/atlantis.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header bg-warning-gradient">
+				
+				<a href="index.html" class="logo">
+					<img src="../assets/img/logo/Final logo 1-1.svg" alt="navbar brand" class="navbar-brand">
+
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg bg-warning-gradient">
+				
+				<div class="container-fluid">
+					
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-bell"></i>
+								<span class="notification">4</span>
+							</a>
+							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+								<li>
+									<div class="dropdown-title">You have 4 new notification</div>
+								</li>
+								<li>
+									<div class="notif-scroll scrollbar-outer">
+										<div class="notif-center">
+											<a href="#">
+												<div class="notif-icon notif-primary"> <i class="fa fa-user-plus"></i> </div>
+												<div class="notif-content">
+													<span class="block">
+														New user registered
+													</span>
+													<span class="time">5 minutes ago</span> 
+												</div>
+											</a>
+											<a href="#">
+												<div class="notif-icon notif-success"> <i class="fa fa-comment"></i> </div>
+												<div class="notif-content">
+													<span class="block">
+														Rahmad commented on Admin
+													</span>
+													<span class="time">12 minutes ago</span> 
+												</div>
+											</a>
+											<a href="#">
+												<div class="notif-img"> 
+													<img src="../assets/img/profile2.jpg" alt="Img Profile">
+												</div>
+												<div class="notif-content">
+													<span class="block">
+														Reza send messages to you
+													</span>
+													<span class="time">12 minutes ago</span> 
+												</div>
+											</a>
+											<a href="#">
+												<div class="notif-icon notif-danger"> <i class="fa fa-heart"></i> </div>
+												<div class="notif-content">
+													<span class="block">
+														Farrah liked Admin
+													</span>
+													<span class="time">17 minutes ago</span> 
+												</div>
+											</a>
+										</div>
+									</div>
+								</li>
+								<li>
+									<a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		<div class="sidebar sidebar-style-2">			
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+					<div class="user">
+						<div class="avatar-sm float-left mr-2">
+							<img src="../assets/img/undraw_profile_pic_ic5t(1).svg" alt="..." class="avatar-img rounded-circle">
+						</div>
+						<div class="info">
+							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									Hizrian
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample">
+								<ul class="nav">
+									<li>
+										<a href="#profile">
+											<span class="link-collapse">My Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="#edit">
+											<span class="link-collapse">Edit Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="#settings">
+											<span class="link-collapse">Settings</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-primary">
+						<li class="nav-item">
+							<a href="index.html" class="">
+								<i class="icon-home  text-warning"></i>
+								<p>Home</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="cards.html" class="">
+								<i class="icon-layers text-warning"></i>
+								<p>My Cards</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#telecom" class="collapsed" aria-expanded="false">
+								<i class="icon-phone text-warning"></i>
+								<p>Telecom Services</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="telecom">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="topop.html">
+											<span class=" ml-2 mr-2">Topup</span>
+										</a>
+									</li>
+									<li>
+										<a href="bill-inquery.html">
+											<span class=" ml-2 mr-2">Bill Inquiry</span>
+										</a>
+									</li>
+									<li>
+										<a href="bill-payment.html">
+											<span class=" ml-2 mr-2">Bill payment</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+
+						<li class="nav-item">
+							<a href="electricty.html" class="">
+								<i class="icon-energy text-warning"></i>
+								<p>ELECTRICITY</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#Education" class="collapsed" aria-expanded="false">
+								<i class="icon-graduation text-warning"></i>
+								<p>Education Services </p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="Education">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="#">
+											<div class="avatar avatar-xs ">
+												<img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img 	rounded-circle">
+											</div>
+											<span class=" ml-2 mr-2">MOHE</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#Government" class="collapsed" aria-expanded="false">
+								<i class="icon-grid text-warning"></i>
+								<p>Government Services </p>
+								<span class="caret"></span>
+							</a>
+							<!-- <div class="collapse" id="Government">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="electricty.html">
+											<i class="icon-energy text-warning"></i>
+											<span class=" ml-2 mr-2">ELECTRICITY</span>
+										</a>
+									</li>
+									
+								</ul>
+							</div> -->
+						</li>
+						<li class="nav-item">
+							<a href="transfer.html" class="">
+								<i class="icon-cursor text-warning"></i>
+								<p>Transfer</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="currency-exchange.html" class="">
+								<i class="icon-directions text-warning"></i>
+								<p>Currency Exchange</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="fav.html" class="">
+								<i class="icon-star  text-warning"></i>
+								<p>My Favorites</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="history.html" class="">
+								<i class="icon-layers text-warning"></i>
+								<p>History</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+				<div class="panel-header bg-warning-gradient">
+					<div class="page-inner py-4">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row"><h2 class="text-white pb-2 fw-bold d-inline">Bill Payment</h2>
+							<ul class="breadcrumbs">
+								<li class="nav-home">
+									<a href="index.html">
+										<i class="flaticon-home text-white"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body telecom-img">
+									<ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center" id="pills-tab-with-icon" role="tablist">
+										<li class="nav-item submenu">
+											<a class="nav-link active p-0" id="pills-zain-tab-icon" data-toggle="pill" href="#pills-zain-icon" role="tab" aria-controls="pills-zain-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="../assets/img/zain.jpg" alt="..." class="avatar-img rounded">
+												</div>
+											
+											</a>
+										</li>
+										<li class="nav-item submenu">
+											<a class="nav-link p-0" id="pills-mtn-tab-icon" data-toggle="pill" href="#pills-mtn-icon" role="tab" aria-controls="pills-mtn-icon" aria-selected="false">
+												<div class="avatar">
+													<img src="../assets/img/mtn.png" alt="..." class="avatar-img rounded">
+												</div>
+												
+											</a>
+										</li>
+										<li class="nav-item submenu">
+											<a class="nav-link p-0" id="pills-sudani-tab-icon" data-toggle="pill" href="#pills-sudani-icon" role="tab" aria-controls="pills-sudani-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="../assets/img/sudani.jpeg" alt="..." class="avatar-img rounded">
+												</div>
+												
+											</a>
+										</li>
+										<li class="nav-item submenu ">
+											<a class="nav-link p-0" id="pills-canar-tab-icon" data-toggle="pill" href="#pills-canar-icon" role="tab" aria-controls="pills-canar-icon" aria-selected="true">
+												<div class="avatar">
+													<img src="../assets/img/canar.jpeg" alt="..." class="avatar-img rounded">
+												</div>
+												
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
+										<div class="tab-pane fade active show" id="pills-zain-icon" role="tabpanel" aria-labelledby="pills-zain-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center" id="pills-tab-with-icon" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Local-tab-icon" data-toggle="pill" href="#pills-Local-icon" role="tab" aria-controls="pills-Local-icon" aria-selected="true">
+															<i class="flaticon-placeholder"></i>
+															Local
+														</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-International-tab-icon" data-toggle="pill" href="#pills-International-icon" role="tab" aria-controls="pills-International-icon" aria-selected="false">
+															<i class="flaticon-internet"></i>
+															International
+														</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
+													<div class="tab-pane fade show active" id="pills-Local-icon" role="tabpanel" aria-labelledby="pills-Local-tab-icon">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="defaultSelect">Card Number</label>
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																		  <button class="btn select-card btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+																		  <div class="dropdown-menu">
+																			<a class="dropdown-item" href="#">Action</a>
+																			<a class="dropdown-item" href="#">Another action</a>
+																			<a class="dropdown-item" href="#">Something else here</a>
+																			
+																		  </div>
+																		</div>
+																		<input type="text" class="form-control" aria-label="Text input with dropdown button">
+																	</div>
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-International-icon" role="tabpanel" aria-labelledby="pills-International-tab-icon">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="defaultSelect">Card Number</label>
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																		  <button class="btn select-card btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+																		  <div class="dropdown-menu">
+																			<a class="dropdown-item" href="#">Action</a>
+																			<a class="dropdown-item" href="#">Another action</a>
+																			<a class="dropdown-item" href="#">Something else here</a>
+																			
+																		  </div>
+																		</div>
+																		<input type="text" class="form-control" aria-label="Text input with dropdown button">
+																	</div>
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Virtual-icon" role="tabpanel" aria-labelledby="pills-Virtual-tab-icon">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="defaultSelect">Card Number</label>
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																		  <button class="btn select-card btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+																		  <div class="dropdown-menu">
+																			<a class="dropdown-item" href="#">Action</a>
+																			<a class="dropdown-item" href="#">Another action</a>
+																			<a class="dropdown-item" href="#">Something else here</a>
+																			
+																		  </div>
+																		</div>
+																		<input type="text" class="form-control" aria-label="Text input with dropdown button">
+																	</div>
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="tab-pane fade" id="pills-mtn-icon" role="tabpanel" aria-labelledby="pills-mtn-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Inquiry-tab" data-toggle="pill" href="#pills-Inquiry" role="tab" aria-controls="pills-Inquiry" aria-selected="false">Bill Inquiry</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Inquiry" role="tabpanel" aria-labelledby="pills-Inquiry-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade " id="pills-sudani-icon" role="tabpanel" aria-labelledby="pills-sudani-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Inquiry-tab" data-toggle="pill" href="#pills-Inquiry" role="tab" aria-controls="pills-Inquiry" aria-selected="false">Bill Inquiry</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Inquiry" role="tabpanel" aria-labelledby="pills-Inquiry-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="pills-canar-icon" role="tabpanel" aria-labelledby="pills-canar-tab-icon">
+											<div class="telecom-tabs">
+												<ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+													<li class="nav-item">
+														<a class="nav-link active" id="pills-Topup-tab" data-toggle="pill" href="#pills-Topup" role="tab" aria-controls="pills-Topup" aria-selected="true">Topup</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Inquiry-tab" data-toggle="pill" href="#pills-Inquiry" role="tab" aria-controls="pills-Inquiry" aria-selected="false">Bill Inquiry</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" id="pills-Payment-tab" data-toggle="pill" href="#pills-Payment" role="tab" aria-controls="pills-Payment" aria-selected="false">Bill Payment</a>
+													</li>
+												</ul>
+												<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+													<div class="tab-pane fade show active" id="pills-Topup" role="tabpanel" aria-labelledby="pills-Topup-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Inquiry" role="tabpanel" aria-labelledby="pills-Inquiry-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="pills-Payment" role="tabpanel" aria-labelledby="pills-Payment-tab">
+														<form >
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="">Phone Number</label>
+																	<input type="number" class="form-control" id="" placeholder="Enter Email">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Card Number</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">iPIN</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<label for="">Amount</label>
+																	<input type="number" class="form-control" id="" placeholder="">
+																</div>
+																<div class="form-group col-md-6">
+																	<button class="btn btn-warning">Pay</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<div class="container-fluid">
+					<!-- <nav class="pull-left">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Link
+								</a>
+							</li>
+						</ul>
+					</nav> -->
+					<div class="copyright ml-auto">
+						2020, made by <a href="#"></a>
+					</div>				
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../assets/js/core/popper.min.js"></script>
+	<script src="../assets/js/core/bootstrap.min.js"></script>
+	<!--   Slider Files   -->
+	<script src="../assets/js/slider/swiper.min.js"></script>
+	<script src="../assets/js/slider/morphext.min.js"></script>
+	<script src="../assets/js/slider/scripts.js"></script>
+	<!-- jQuery UI -->
+	<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Atlantis JS -->
+	<script src="../assets/js/atlantis.min.js"></script>
+</body>
+</html>
