@@ -112,13 +112,44 @@ base_response = {"responseCode": "",
 @authentication_classes(())
 @permission_classes(())
 def Regsiter(request):
+        request_data = dict(request.data)
         response = base_response
-        data = {}
-        
-        # data["UUID"] = str(uuid.uuid4())
-        # data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
-        data=request.POST
-        data["applicationId"] = "ITQAN"
+        data={
+              "applicationId":"ITQAN",
+   
+        "entityId": "249922596877", 
+        "entityType": "Phone No",
+        "entityGroup": "1", 
+        "userName": "ITQANtest8", 
+        "tranDateTime":"150323080652",
+        "UUID":"229d4176-ea37-413b-ac27-226978f100a4",
+        "IPIN":"ci0IzLAYjaO4kLlPebAfjSv4GDl+IcUeQl1S33Ok89mlSr6qjEa0fSY1Ou/BCfElFAI4B6sRaIIqeSrDcH8YyA==",
+        "userPassword":"DdsjlYk4PGft/U9By5KjLspOMhu60oKU8HHE5iDfLPAuGkBQJCuHX+kU44ZQKZF8nOStyx1nB/CxZ0Ohp25log==",
+        "phoneNo": "0914625960", 
+        "registrationType": "10",
+        "PAN": "9736441899952970",
+            "expDate": "2303", 
+            "mbr": "0", 
+            "panCategory": "Standard"
+            }
+        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
+        data["PAN"] = request_data["PAN"]
+        data['UUID']=request_data["UUID"]
+        data["entityId"] = request_data["entityId"]
+        data["entityType"] = request_data["entityType"]
+        data["entityGroup"] = request_data["entityGroup"]
+        data['userName']=request_data["userName"]
+        data["userPassword"] = request_data["userPassword"]
+        data["tranDateTime"] = request_data["tranDateTime"]
+        data["phoneNo"] = request_data["phoneNo"]
+        data["registrationType"] = request_data["registrationType"]
+        data["tranCurrency"] = request_data["tranCurrency"]
+        data['mbr']=request_data["mbr"]
+        data["IPIN"] = request_data["IPIN"]
+        data["tranDateTime"] = request_data["tranDateTime"]
+        data["panCategory"] = request_data["panCategory"]
+       
+        data[""]
         print(data)
         resp = json.loads(requests.post(
             settings.EBS_CONSUMER_API["END_POINT"]+ "/register", json=data, verify=False).text)
