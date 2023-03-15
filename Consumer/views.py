@@ -115,9 +115,10 @@ def Regsiter(request):
         response = base_response
         data = {}
         data["applicationId"] = "ITQAN"
-        data["UUID"] = str(uuid.uuid4())
+        # data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         data.update(request.POST)
+        print(data)
         resp = json.loads(requests.post(
             settings.EBS_CONSUMER_API["END_POINT"]+ "/register", json=data, verify=False).text)
       
