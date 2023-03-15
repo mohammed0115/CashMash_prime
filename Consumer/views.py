@@ -149,7 +149,7 @@ def Regsiter(request):
         data["tranDateTime"] = request_data["tranDateTime"]
         data["panCategory"] = request_data["panCategory"]
        
-        data[""]
+        # data[""]
         print(data)
         resp = json.loads(requests.post(
             settings.EBS_CONSUMER_API["END_POINT"]+ "/register", json=data, verify=False).text)
