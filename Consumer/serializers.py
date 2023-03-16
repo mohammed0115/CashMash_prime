@@ -37,7 +37,7 @@ class CardRequiredConsumerAPISerializer(BaseConsumerAPISerializer):
     mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=False)
     # we only allow PAN/iPIN authentication for now (option "00"). If this changes,
     # add more options from Appendix E in the EBS Consumer API docs
-    authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)  # defaults to '00'
+    authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)  # defaults to '00'
 
 
     def validate_expDate(self, exp_date):
