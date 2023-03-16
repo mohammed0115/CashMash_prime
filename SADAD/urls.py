@@ -34,7 +34,7 @@ urlpatterns = [
     path('CardTransfer/', views.CardTransferView.as_view()),
     path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
     path('isAlive/', csrf_exempt(views.echoTest)),
-    path('BalanceInquiry/', views.BalanceInquiryView.as_view()),
+    path('phone/Balance/', csrf_exempt(views.balance_inquiry_for_phone)),
     path('GetPublicKey/',csrf_exempt(views.get_public_key)),
     path('TransactionStatus/', views.TransactionStatusView.as_view()),
     path('Payment/',views.PaymentView.as_view()),
