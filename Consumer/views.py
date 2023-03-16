@@ -198,7 +198,7 @@ def balance_inquiry_for_PAN(request):
         request_data = dict(request.data)
         response = base_response
         data={
-            "authenticationType": "00",
+            "authenticationType": "10",
             "fromAccountType": "00",
             "tranCurrency": "SDG",
             "mbr": "0"
