@@ -144,10 +144,10 @@ def Regsiter(request):
         data["phoneNo"] = request_data["phoneNo"]
         data["registrationType"] = request_data["registrationType"]
         # data["tranCurrency"] = request_data["tranCurrency"]
-        data['mbr']=request_data["mbr"]
+        # data['mbr']=request_data["mbr"]
         data["IPIN"] = request_data["IPIN"]
         data["tranDateTime"] = request_data["tranDateTime"]
-        data["panCategory"] = request_data["panCategory"]
+        # data["panCategory"] = request_data["panCategory"]
        
         # data[""]
         print(data)

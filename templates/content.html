@@ -1,0 +1,42 @@
+<div class="panel-header bg-warning-gradient">
+    
+    {% block panel-header %}
+        <div class="page-inner py-4">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Home</h2>
+                </div>
+            </div>
+        </div>
+    {% endblock panel-header %}
+        
+    
+</div>
+
+<div class="page-inner mt--5">
+  
+  {% block page-inner %}
+        <!--Start Slider-->
+        {% block Slider %}
+            {% include "Slider.html" %}
+        {% endblock Slider %}
+        <!--End Slider-->
+
+        
+        <!--Start My Favorite Services-->
+        
+        {% block FavoriteServices %}
+            {% include "FavoriteServices.html" %}
+        {% endblock FavoriteServices %}
+            
+        <!--End My Favorite Services-->
+        <!--Start Last Transfer-->
+        {% block EndLastTransfer %}
+            {% include "EndLastTransfer.html" %}
+        {% endblock EndLastTransfer%}
+        <!--End Last Transfer-->
+  {% endblock page-inner %}
+    
+    
+    
+</div>
