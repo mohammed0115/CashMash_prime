@@ -210,6 +210,8 @@ def balance_inquiry_for_PAN(request):
         data['UUID']=request_data["UUID"]
         data["IPIN"] = request_data["IPIN"]
         data["tranDateTime"] = request_data["tranDateTime"]
+        data['userName']=request_data["userName"]
+        data["userPassword"] = request_data["userPassword"]
         
         print(data)
         resp = json.loads(requests.post(ebs_consumer.objects.first().END_POINT+ "/getBalance", json=data, verify=False).text)
