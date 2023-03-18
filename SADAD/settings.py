@@ -84,23 +84,19 @@ WSGI_APPLICATION = 'SADAD.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
-CREATE USER 'CashMash'@'localhost' IDENTIFIED BY 'CashMash@2023##';
 
-GRANT ALL PRIVILEGES ON *.* TO 'CashMash'@'localhost' WITH GRANT OPTION
+CREATE USER 'CashMash'@'localhost' IDENTIFIED BY 'CashMash@2023##';
+"""
+#GRANT ALL PRIVILEGES ON *.* TO 'CashMash'@'localhost' WITH GRANT OPTION
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'users': {
+    'default':{
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CashMash',
         'USER': 'CashMash',
@@ -110,7 +106,7 @@ DATABASES = {
     }
 
 }
-"""
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
