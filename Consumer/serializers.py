@@ -24,20 +24,23 @@ class VoucherNumberValidator(RegexValidator):
 
 class BaseConsumerAPISerializer(serializers.Serializer):
     tranDateTime = serializers.CharField(max_length=12)
+    # applicationId = 
     # the regex is for accepting a uuid version 1 or version 4, checks case ignorant hex chars and groupings
     UUID = serializers.RegexField('^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',max_length=36, min_length=36, allow_blank=False)
     class Meta:
           fields =['UUID','tranDateTime']
 
+class authenticationSerializer(serializers.Serializer):
+    authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)  # defaults to '00'
 
 class CardRequiredConsumerAPISerializer(BaseConsumerAPISerializer):
     PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
     IPIN = serializers.CharField(max_length=88, allow_null=False)
-    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=False)
-    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=False)
+    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
     # we only allow PAN/iPIN authentication for now (option "00"). If this changes,
     # add more options from Appendix E in the EBS Consumer API docs
-    authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)  # defaults to '00'
+    
 
 
     def validate_expDate(self, exp_date):
@@ -78,10 +81,6 @@ class PaymentInfoConsumerAPISerializer(serializers.Serializer):
 
 #dynamicFees
 
-class BalanceInqueryAPISerializer(CardRequiredConsumerAPISerializer,FromAccountConsumerAPISerializer):
-    pass
-
-
 
 
 
@@ -90,9 +89,7 @@ class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, Fro
     serviceProviderId = serializers.CharField(allow_null=False, min_length=10, max_length=10, required=True)
     # serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
     
-class BillInquiryConsumerAPISerializer(CardRequiredConsumerAPISerializer, PaymentInfoConsumerAPISerializer):
-    # no extra fields, just the combined CardRequiredConsumerAPISerializer and PaymentInfoConsumerAPISerializer fields
-    pass
+
 class PaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
                                    PaymentInfoConsumerAPISerializer, PositiveAmountSerializer):
     # no extra fields
@@ -152,10 +149,7 @@ class ChangeCardsIpin(CardRequiredConsumerAPISerializer):
     
     
 
-
-class BasicUserAPISerializer(serializers.Serializer):
-    userName        = serializers.CharField(max_length=250,required=False,allow_null=False)
-    userPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
+class EntitySerializer(serializers.Serializer):
     entityId        = serializers.CharField(max_length=100,required=False,allow_null=False)
     entityType      = serializers.CharField(max_length=20,required=False,allow_null=False)
     def validate_entityType(self, entityType):
@@ -163,6 +157,10 @@ class BasicUserAPISerializer(serializers.Serializer):
         entitylitst=['Phone No','Meter No','Credit Card','Cash Card','Mobile Wallet']
         if entityType not in entitylitst:
             raise serializers.ValidationError(entitylitst, code='invalid')
+class BasicUserAPISerializer(serializers.Serializer):
+    userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
+    userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
+    
 class paymentDetailsSerializer(serializers.Serializer):
     accounts        = serializers.CharField(max_length=250,required=False,allow_null=False)
     descriptions    = serializers.CharField(max_length=250,required=False,allow_null=False)
@@ -215,4 +213,11 @@ class RegisterSerializer(BasicUserAPISerializer,CardRequiredConsumerAPISerialize
     extraInfo             =extraInforSerializer()
     
     
-    
+
+class BalanceInqueryAPISerializer(EntitySerializer,BaseConsumerAPISerializer,authenticationSerializer,
+                                  FromAccountConsumerAPISerializer):
+    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
+
+class BillInquiryConsumerAPISerializer(EntitySerializer,BasicUserAPISerializer, BaseConsumerAPISerializer,authenticationSerializer):
+    # no extra fields, just the combined CardRequiredConsumerAPISerializer and PaymentInfoConsumerAPISerializer fields
+    pass  
