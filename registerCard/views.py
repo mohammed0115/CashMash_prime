@@ -3,11 +3,12 @@ from Consumer.EBS_Request import EBSRequestAPIView
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import *
+import requests
 import json
 class RegisterGolenCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
-    serializer_class = GoldenCardSerializer
+    serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -30,7 +31,7 @@ class RegisterGolenCard(EBSRequestAPIView):
 class RegisterAgentCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
-    serializer_class = GoldenCardSerializer
+    serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -54,7 +55,7 @@ class registerSilverCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     queryset = Register.objects.all()
-    serializer_class = SilverCardSerializer
+    serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -82,8 +83,7 @@ class VirtualCard(EBSRequestAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            # serializer = self.get_serializer(data=request.data)
-            # serializer.is_valid(raise_exception=True)
+           
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:

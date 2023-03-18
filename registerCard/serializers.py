@@ -41,16 +41,16 @@ class EntityUserAPISerializer(serializers.Serializer):
     #     if entityType not in entitylitst:
     #         raise serializers.ValidationError(entitylitst, code='invalid')
 class UserNameSerializer(serializers.Serializer):
-    userName        = serializers.CharField(max_length=250,required=False,allow_null=False)
+    userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
 class extraInforSerializer(serializers.Serializer):
-    securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
-    securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
+    securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=True)
+    securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=True)
 class PanSerializer(serializers.Serializer):
     PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
 class CardRequiredInfoAPISerializer(serializers.Serializer):
     IPIN = serializers.CharField(max_length=88, allow_null=False)
-    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=False)
-    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=False)
+    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
     # defaults to '00'
 
 
@@ -65,15 +65,16 @@ class CardRequiredInfoAPISerializer(serializers.Serializer):
         return exp_date
     
 class BankSerializer(serializers.Serializer):
-    bankAccountNumber     =serializers.CharField(max_length=4,required=False,allow_null=False)
-    bankAccountType       =serializers.CharField(max_length=12,required=False,allow_null=False)
-    bankBranchId          =serializers.CharField(max_length=3,required=False,allow_null=False)
-    bankId                =serializers.CharField(max_length=4,required=False,allow_null=False)
+    bankAccountNumber     =serializers.CharField(max_length=4,required=False,allow_null=True)
+    bankAccountType       =serializers.CharField(max_length=12,required=False,allow_null=True)
+    bankBranchId          =serializers.CharField(max_length=3,required=False,allow_null=True)
+    bankId                =serializers.CharField(max_length=4,required=False,allow_null=True)
 
 
 
 class RegisterSerializer(EntityUserAPISerializer,UserNameSerializer,
-                         userPasswordserializer,BaseConsumerAPISerializer,BankSerializer,CustomerSerializer,CardRequiredInfoAPISerializer,PanSerializer):
+                         userPasswordserializer,BaseConsumerAPISerializer,
+                         BankSerializer,CustomerSerializer,CardRequiredInfoAPISerializer,PanSerializer):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=3,allow_null=False)
     fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
     financialInstitutionId=serializers.CharField(max_length=4,allow_null=False)
@@ -86,24 +87,38 @@ class RegisterSerializer(EntityUserAPISerializer,UserNameSerializer,
     
 
 class phoneNoSerializers(serializers.Serializer):
-    phoneNo = serializers.CharField(max_length=12,allow_null=True)
+    phoneNo = serializers.CharField(max_length=12,allow_null=False)
 class GoldenCardSerializer(RegisterSerializer):
     model=Register
     fields="__all__"
-class SilverCardSerializer(EntityUserAPISerializer,UserNameSerializer,
+class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                          userPasswordserializer,BaseConsumerAPISerializer,CardRequiredInfoAPISerializer):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,allow_null=False)
-    panCategory           =serializers.CharField(max_length=10,allow_null=False)
-    job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
-    email                 =serializers.EmailField(required=False,allow_null=False)
+    financialInstitutionId=serializers.CharField(max_length=4,allow_null=True)
+    panCategory           =serializers.CharField(max_length=10,allow_null=True)
+    job                   =serializers.CharField(max_length=50,required=False,allow_null=True)
+    email                 =serializers.EmailField(required=False,allow_null=True)
     extraInfo             =extraInforSerializer()
     class Meta:
         model=Register
-        fields=['tranDateTime','UUID','userName','entityId','entityType','entityGroup','phoneNo','registrationType','userPassword','financialInstitutionId','panCategory',
-                'job','email','PAN','IPIN','expDate','mbr'
+        fields=['tranDateTime',
+                'UUID',
+                'userName',
+                'entityId',
+                'entityType',
+                'entityGroup',
+                'phoneNo',
+                'registrationType',
+                'userPassword',
+                'financialInstitutionId',
+                'panCategory',
+                'job',
+                'email',
+                'PAN',
+                'IPIN',
+                'expDate',
+                'mbr'
                 ]
-    
     
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
