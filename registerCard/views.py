@@ -11,7 +11,7 @@ class RegisterGolenCard(EBSRequestAPIView):
     serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
-        serializer = PhysicalCardSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # serializer = self.get_serializer(data=request.data)
             # serializer.is_valid(raise_exception=True)
@@ -81,7 +81,7 @@ class VirtualCard(EBSRequestAPIView):
     serializer_class = VirtualCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
-        serializer = VirtualCardSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
            
             payload = self.get_payload_from_input(serializer.data)
