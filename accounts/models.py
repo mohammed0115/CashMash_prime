@@ -60,7 +60,7 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=False, db_index=True, blank=True, null=True)
     
     user_type = models.IntegerField(default=USER_TYPE_CARD_HOLDER, choices=USER_TYPE_CHOICES)
-    date_of_birth = models.CharField(default=date.today,max_length=3,blank=True, null=True)
+    date_of_birth = models.CharField(max_length=3,blank=True, null=True)
     # mobile_number = models.CharField(max_length=20, blank=True, null=True)
     gender = models.IntegerField(choices=GENDER_CHOICES, blank=True, null=True)
     otp = models.CharField(max_length=50, blank=True, null=True)
