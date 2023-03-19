@@ -120,7 +120,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
         }
 """
     class Meta:
-        model=Register
+        # model=Register
         fields=['tranDateTime',
                 'UUID',
                 'userName',
