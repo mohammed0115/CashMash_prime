@@ -164,7 +164,7 @@ class BaseEBSAPIView(views.APIView):
         Extra context provided to the serializer class.
         """
         return {
-            'request': self.request,
+            # 'request': self.request,
             'view': self,
         }
 
