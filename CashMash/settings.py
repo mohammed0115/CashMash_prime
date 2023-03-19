@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'SADAD.urls'
+ROOT_URLCONF = 'CashMash.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'SADAD.wsgi.application'
+WSGI_APPLICATION = 'CashMash.wsgi.application'
 
 
 # Database

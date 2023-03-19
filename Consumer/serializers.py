@@ -221,3 +221,4 @@ class BalanceInqueryAPISerializer(EntitySerializer,BaseConsumerAPISerializer,aut
 class BillInquiryConsumerAPISerializer(EntitySerializer,BasicUserAPISerializer, BaseConsumerAPISerializer,authenticationSerializer):
     # no extra fields, just the combined CardRequiredConsumerAPISerializer and PaymentInfoConsumerAPISerializer fields
     pass  
+

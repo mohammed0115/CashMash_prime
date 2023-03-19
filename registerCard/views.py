@@ -12,6 +12,47 @@ from EBS_CONSUMER_API.models import ebs_consumer,ModelPublickey
 from django.conf import settings
 from .models import *
 from rest_framework import generics
+
+
+class RegisterGolenCard(EBSRequestAPIView):
+    """
+    Send a request to EBS to get status of specific transaction.
+    This implements the request 3.16 'Transaction Status' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = PhysicalCardSerializer
+    ebs_service_path = 'register'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+
+    def get_response_data(self, ebs_response_content_json):
+        ebs_response_content_json = super(RegisterGolenCard, self).get_response_data(ebs_response_content_json)
+        if 'originalTransaction' in ebs_response_content_json:
+            app_id = ebs_response_content_json['originalTransaction'].get('applicationId')
+            if app_id:
+                del ebs_response_content_json['originalTransaction']['applicationId']
+
+        return ebs_response_content_json
+    
+"""
 class RegisterGolenCard(generics.GenericAPIView):
     permission_classes = ()
     authentication_classes = ()
@@ -72,6 +113,7 @@ class RegisterGolenCard(generics.GenericAPIView):
     #         return Response(json.loads(ebs_response.text))
     #     else:
     #         return Response(serializer.errors)
+"""
 class RegisterAgentCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
@@ -98,9 +140,9 @@ class RegisterAgentCard(EBSRequestAPIView):
 class registerSilverCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
-    # queryset = Register.objects.all()
     serializer_class = PhysicalCardSerializer
     ebs_service_path  = 'register'
+    transaction_model_class=Register
     def post(self, request, *args, **kwargs):
         serializer =PhysicalCardSerializer(data=request.data)
         if serializer.is_valid():
