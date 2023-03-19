@@ -141,7 +141,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                 ]
         def get_validation_exclusions(self):
             exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
-            return exclusions + [,'mbr']
+            return exclusions + ['mbr']
     
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
