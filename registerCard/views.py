@@ -42,7 +42,7 @@ class RegisterGolenCard(generics.GenericAPIView):
     def post(self, request, format=None):
         serializer = PhysicalCardSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            # serializer.save()
             try:
                 ebs_response = self.ebs_post(serializer.data)
             except requests.exceptions.ConnectionError:
@@ -76,7 +76,7 @@ class RegisterAgentCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = PhysicalCardSerializer
-    ebs_service_path = 'register'
+    ebs_service_path  = 'register'
     # def post(self, request, *args, **kwargs):
     #     serializer = PhysicalCardSerializer(data=request.data)
     #     if serializer.is_valid():
@@ -98,9 +98,9 @@ class RegisterAgentCard(EBSRequestAPIView):
 class registerSilverCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
-    queryset = Register.objects.all()
+    # queryset = Register.objects.all()
     serializer_class = PhysicalCardSerializer
-    ebs_service_path = 'register'
+    ebs_service_path  = 'register'
     # def post(self, request, *args, **kwargs):
     #     serializer =PhysicalCardSerializer(data=request.data)
     #     if serializer.is_valid():
