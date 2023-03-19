@@ -9,19 +9,20 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from EBS_CONSUMER_API.models import ebs_consumer,ModelPublickey
+from django.conf import settings
 class RegisterGolenCard(APIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
-    # ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
-    # verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
-    # timeout = settings.EBS_CONSUMER_API["TIMEOUT"]
-    # application_id = settings.EBS_CONSUMER_API["APPLICATION_ID"]
-    ebs_base_url = ebs_consumer.objects.first().END_POINT
-    verify_ssl =ebs_consumer.objects.first().VERIFY_SSL
-    timeout = ebs_consumer.objects.first().TIMEOUT
-    application_id = ebs_consumer.objects.first().APPLICATION_ID
+    ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
+    verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
+    timeout = settings.EBS_CONSUMER_API["TIMEOUT"]
+    application_id = settings.EBS_CONSUMER_API["APPLICATION_ID"]
+    # ebs_base_url = ebs_consumer.objects.first().END_POINT
+    # verify_ssl =ebs_consumer.objects.first().VERIFY_SSL
+    # timeout = ebs_consumer.objects.first().TIMEOUT
+    # application_id = ebs_consumer.objects.first().APPLICATION_ID
    
     def get_payload_from_input(self, input_data):
         payload = {}
