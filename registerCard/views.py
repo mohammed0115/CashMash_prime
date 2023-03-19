@@ -5,11 +5,35 @@ from rest_framework.response import Response
 from registerCard.serializers import PhysicalCardSerializer,VirtualCardSerializer
 import requests
 import json
-class RegisterGolenCard(EBSRequestAPIView):
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from EBS_CONSUMER_API.models import ebs_consumer,ModelPublickey
+class RegisterGolenCard(APIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
+    # ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
+    # verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
+    # timeout = settings.EBS_CONSUMER_API["TIMEOUT"]
+    # application_id = settings.EBS_CONSUMER_API["APPLICATION_ID"]
+    ebs_base_url = ebs_consumer.objects.first().END_POINT
+    verify_ssl =ebs_consumer.objects.first().VERIFY_SSL
+    timeout = ebs_consumer.objects.first().TIMEOUT
+    application_id = ebs_consumer.objects.first().APPLICATION_ID
+   
+    def get_payload_from_input(self, input_data):
+        payload = {}
+        payload.update(input_data)
+        payload.update({'applicationId': self.application_id})
+        # payload.update({'UUID':str(uuid.uuid4())})
+        return payload
+
+    def get_response_data(self, ebs_response_content_json):
+        ebs_response_content_json.pop('applicationId')
+        return ebs_response_content_json
+    
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
