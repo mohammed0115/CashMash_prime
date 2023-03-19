@@ -11,17 +11,17 @@ from registerCard.views import *
 urlpatterns = [
     path(
         "register/Golden/",
-        csrf_exempt(RegisterGolenCard.as_view()),
+        RegisterGolenCard.as_view(),
         name="register_golden",
     ),
     path(
         "register/Agent/",
-        csrf_exempt(RegisterAgentCard.as_view()),
+        RegisterAgentCard.as_view(),
         name="register_Agent",
     ),
     path(
         "register/Silver/",
-        csrf_exempt(registerSilverCard.as_view()),
+        registerSilverCard.as_view(),
         name="register_Silver",
     ),
    path(
