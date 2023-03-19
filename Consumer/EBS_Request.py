@@ -185,7 +185,7 @@ class BaseEBSAPIView(views.APIView):
 #         return ebs_response_content_json
 
 
-class EBSConsumerAPIView(BaseEBSAPIView):
+class EBSRequestAPIView(BaseEBSAPIView):
     ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
     verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
     timeout = settings.EBS_CONSUMER_API["TIMEOUT"]

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Consumer.EBS_Request import EBSConsumerAPIView
+from Consumer.EBS_Request import EBSRequestAPIView
 from rest_framework import generics
 from rest_framework.response import Response
 from registerCard.serializers import PhysicalCardSerializer,VirtualCardSerializer
@@ -72,7 +72,7 @@ class RegisterGolenCard(generics.GenericAPIView):
     #         return Response(json.loads(ebs_response.text))
     #     else:
     #         return Response(serializer.errors)
-class RegisterAgentCard(EBSConsumerAPIView):
+class RegisterAgentCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = PhysicalCardSerializer
