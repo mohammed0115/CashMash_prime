@@ -46,10 +46,10 @@ class extraInforSerializer(serializers.Serializer):
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=True)
     securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=True)
 class PanSerializer(serializers.Serializer):
-    PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    PAN = serializers.CharField(allow_null=False,  required=True,validators=[PanValidator()])
 class CardRequiredInfoAPISerializer(serializers.Serializer):
     IPIN = serializers.CharField(max_length=88, allow_null=False)
-    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], required=True, allow_null=True)
     mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
     # defaults to '00'
 
@@ -77,9 +77,9 @@ class RegisterSerializer(EntityUserAPISerializer,UserNameSerializer,
                          BankSerializer,CustomerSerializer,CardRequiredInfoAPISerializer,PanSerializer):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=3,allow_null=False)
     fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,allow_null=False)
-    panCategory           =serializers.CharField(max_length=10,allow_null=False)
-    dateOfBirth           = serializers.DateField(allow_null=False,format="%d-%m-%Y")
+    financialInstitutionId=serializers.CharField(max_length=4,allow_null=False, required=False,)
+    panCategory           =serializers.CharField(max_length=10,allow_null=False, required=False,)
+    dateOfBirth           = serializers.DateField(allow_null=False, required=False,format="%d-%m-%Y")
     job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
     email                 =serializers.EmailField(required=False,allow_null=False)
     extraInfo             =extraInforSerializer()
@@ -94,10 +94,10 @@ class GoldenCardSerializer(RegisterSerializer):
 class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                          userPasswordserializer,BaseConsumerAPISerializer,CardRequiredInfoAPISerializer):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,allow_null=True)
-    panCategory           =serializers.CharField(max_length=10,allow_null=True)
-    job                   =serializers.CharField(max_length=50,required=False,allow_null=True)
-    email                 =serializers.EmailField(required=False,allow_null=True)
+    financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
+    panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
+    job                   =serializers.CharField(max_length=50, required=False,required=False,allow_null=True)
+    email                 =serializers.EmailField(required=False, required=False,allow_null=True)
     extraInfo             =extraInforSerializer()
     class Meta:
         model=Register
@@ -119,6 +119,9 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                 'expDate',
                 'mbr'
                 ]
+        def get_validation_exclusions(self):
+            exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
+            return exclusions + ['panCategory','financialInstitutionId','job','email','mbr']
     
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
