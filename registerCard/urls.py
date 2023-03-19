@@ -7,6 +7,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import path,include
 from registerCard.views import *
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path(
@@ -35,3 +36,4 @@ urlpatterns = [
     #     name="listCard",
     # ),
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)

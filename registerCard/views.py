@@ -10,9 +10,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from EBS_CONSUMER_API.models import ebs_consumer,ModelPublickey
 from django.conf import settings
-class RegisterGolenCard(APIView):
+from .models import *
+from rest_framework import generics
+class RegisterGolenCard(generics.GenericAPIView):
     permission_classes = ()
     authentication_classes = ()
+    queryset = Register.objects.all()
     # serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
