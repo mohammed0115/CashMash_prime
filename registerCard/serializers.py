@@ -96,7 +96,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
     financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
     panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
-    job                   =serializers.CharField(max_length=50, required=False,required=False,allow_null=True)
+    job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
     email                 =serializers.EmailField(required=False, required=False,allow_null=True)
     extraInfo             =extraInforSerializer()
     class Meta:
