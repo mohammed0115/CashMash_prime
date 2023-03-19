@@ -2,7 +2,7 @@ from django.shortcuts import render
 from Consumer.EBS_Request import EBSRequestAPIView
 from rest_framework import generics
 from rest_framework.response import Response
-from .serializers import *
+from .serializers import PhysicalCardSerializer,VirtualCardSerializer
 import requests
 import json
 class RegisterGolenCard(EBSRequestAPIView):
@@ -54,7 +54,7 @@ class RegisterAgentCard(EBSRequestAPIView):
 class registerSilverCard(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
-    queryset = Register.objects.all()
+    # queryset = Register.objects.all()
     serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     def post(self, request, *args, **kwargs):
