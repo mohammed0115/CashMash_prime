@@ -97,8 +97,8 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
     financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
     panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
     job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
-    email                 =serializers.EmailField(required=False, required=False,allow_null=True)
-    extraInfo             =extraInforSerializer()
+    email                 =serializers.EmailField( required=False,allow_null=True)
+    extraInfo             =extraInforSerializer(required=False)
     class Meta:
         model=Register
         fields=['tranDateTime',
