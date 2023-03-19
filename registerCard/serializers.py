@@ -99,6 +99,26 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
     job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
     email                 =serializers.EmailField( required=False,allow_null=True)
     extraInfo             =extraInforSerializer(required=False)
+    """
+{
+       "applicationId":"ITQAN",
+   
+     "entityId": "249922596877", 
+     "entityType": "Phone No",
+      "entityGroup": "1", 
+      "userName": "ITQANtest8", 
+"tranDateTime":"150323080652",
+"UUID":"229d4176-ea37-413b-ac27-226978f100a4",
+"IPIN":"ci0IzLAYjaO4kLlPebAfjSv4GDl+IcUeQl1S33Ok89mlSr6qjEa0fSY1Ou/BCfElFAI4B6sRaIIqeSrDcH8YyA==",
+"userPassword":"DdsjlYk4PGft/U9By5KjLspOMhu60oKU8HHE5iDfLPAuGkBQJCuHX+kU44ZQKZF8nOStyx1nB/CxZ0Ohp25log==",
+"phoneNo": "0914625960", 
+      "registrationType": "10",
+       "PAN": "9736441899952970",
+        "expDate": "2303", 
+        "mbr": "0", 
+        "panCategory": "Standard"
+        }
+"""
     class Meta:
         model=Register
         fields=['tranDateTime',
@@ -110,10 +130,10 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                 'phoneNo',
                 'registrationType',
                 'userPassword',
-                'financialInstitutionId',
+                # 'financialInstitutionId',
                 'panCategory',
-                'job',
-                'email',
+                # 'job',
+                # 'email',
                 'PAN',
                 'IPIN',
                 'expDate',

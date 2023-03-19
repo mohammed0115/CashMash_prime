@@ -13,7 +13,7 @@ urlpatterns = [
     path(
         "register/Golden/",
         RegisterGolenCard.as_view(),
-        name="register_golden",
+     
     ),
     path(
         "register/Agent/",
