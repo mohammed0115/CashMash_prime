@@ -94,11 +94,11 @@ class GoldenCardSerializer(RegisterSerializer):
 class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                          userPasswordserializer,BaseConsumerAPISerializer,CardRequiredInfoAPISerializer):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
+    # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
     panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
-    job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
-    email                 =serializers.EmailField( required=False,allow_null=True)
-    extraInfo             =extraInforSerializer(required=False)
+    # job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
+    # email                 =serializers.EmailField( required=False,allow_null=True)
+    # extraInfo             =extraInforSerializer(required=False)
     """
 {
        "applicationId":"ITQAN",
@@ -141,7 +141,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                 ]
         def get_validation_exclusions(self):
             exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
-            return exclusions + ['panCategory','financialInstitutionId','job','email','mbr']
+            return exclusions + [,'mbr']
     
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
