@@ -26,7 +26,9 @@ class RegisterGolenCard(generics.GenericAPIView):
     # verify_ssl =ebs_consumer.objects.first().VERIFY_SSL
     # timeout = ebs_consumer.objects.first().TIMEOUT
     # application_id = ebs_consumer.objects.first().APPLICATION_ID
-   
+    # @method_decorator()
+    def dispatch(self, *args, **kwargs):
+        return super(RegisterGolenCard, self).dispatch(*args, **kwargs)
     def get_payload_from_input(self, input_data):
         payload = {}
         payload.update(input_data)
