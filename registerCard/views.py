@@ -13,7 +13,7 @@ from django.conf import settings
 class RegisterGolenCard(APIView):
     permission_classes = ()
     authentication_classes = ()
-    serializer_class = PhysicalCardSerializer
+    # serializer_class = PhysicalCardSerializer
     ebs_service_path = 'register'
     ebs_base_url = settings.EBS_CONSUMER_API["END_POINT"]
     verify_ssl = settings.EBS_CONSUMER_API["VERIFY_SSL"]
