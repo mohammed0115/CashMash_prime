@@ -198,7 +198,7 @@ def balance_inquiry_for_phone(request):
         request_data = dict(request.data)
         response = base_response
         data={
-            "authenticationType": "10",
+            "authenticationType": "11",
             "fromAccountType": "00",
             "tranCurrency": "SDG",
             "mbr": "0"
@@ -208,10 +208,10 @@ def balance_inquiry_for_phone(request):
         data["entityType"] = request_data["entityType"]
         data["tranCurrency"] = request_data["tranCurrency"]
         data['UUID']=request_data["UUID"]
-        data["IPIN"] = request_data["IPIN"]
+        # data["IPIN"] = request_data["IPIN"]
         data["tranDateTime"] = request_data["tranDateTime"]
-        # data['userName']=request_data["userName"]
-        # data["userPassword"] = request_data["userPassword"]
+        data['userName']=request_data["userName"]
+        data["userPassword"] = request_data["userPassword"]
         
         print(data)
         resp = json.loads(requests.post(ebs_consumer.objects.first().END_POINT+ "/getBalance", json=data, verify=False).text)
