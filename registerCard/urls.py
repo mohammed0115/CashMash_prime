@@ -29,9 +29,9 @@ urlpatterns = [
         VirtualCard.as_view(),
         name="register_VirtualCard",
     ),
-    path(
-        "register/List/",
-        csrf_exempt(RegisterList.as_view()),
-        name="listCard",
-    ),
+    # path(
+    #     "register/List/",
+    #     csrf_exempt(RegisterList.as_view()),
+    #     name="listCard",
+    # ),
 ]

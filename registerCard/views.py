@@ -97,6 +97,6 @@ class VirtualCard(EBSRequestAPIView):
             return Response(json.loads(ebs_response.text))
         else:
             return Response(serializer.errors)
-class RegisterList(generics.ListAPIView):
+# class RegisterList(generics.ListAPIView):
     # queryset = Register.objects.all()
-    serializer_class = VirtualCardSerializer
+    # serializer_class = VirtualCardSerializer
