@@ -1,8 +1,6 @@
+from registerCard.views import RegisterGolenCard,RegisterAgentCard,registerSilverCard,VirtualCard,RegisterList
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import path,include
-from registerCard.views import RegisterGolenCard,RegisterAgentCard,registerSilverCard,VirtualCard,RegisterList
-
-
 
 urlpatterns = [
     path(
