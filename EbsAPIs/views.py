@@ -40,7 +40,7 @@ class Ebs(object):
     def post(self,endpoint,data):
         data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
         resp = json.loads(requests.post(ebs_consumer.objects.first().END_POINT+ endpoint, json=data, verify=False).text)
-        return Response(resp) 
+        return resp
     def getPublicKey(self,tranDateTime,UUID):
         data = {}
         data["UUID"] = UUID
