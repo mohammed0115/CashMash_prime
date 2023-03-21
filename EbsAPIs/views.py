@@ -209,7 +209,7 @@ class Ebs(object):
                             entityGroup,
                             userName,
                             phoneNo,
-                            registrationType,
+                            registrationType=None,
                             ):
         data = {}
         data["UUID"] = UUID
@@ -219,6 +219,6 @@ class Ebs(object):
         data["entityGroup"] = entityGroup
         data['userName']=userName
         data["phoneNo"] = phoneNo
-        data["registrationType"] = registrationType
+        data["registrationType"] = "01"
         
         return self.post(self.services_list[1],data)
