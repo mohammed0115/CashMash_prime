@@ -44,7 +44,7 @@ def RegisterVirtualCard(request):
     if request.method == 'POST':
         serializer = VirtualCardSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            # serializer.save()
             resonse=ebs_services.register_virtual(**serializer.data)
             return Response(json.loads(resonse), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
