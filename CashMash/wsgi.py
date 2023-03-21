@@ -17,5 +17,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] ='CashMash.settings'
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CashMash.settings')
-
+os.environ['HTTPS']="on"
+os.environ['wsgi.url_scheme']="https"
 application = get_wsgi_application()
