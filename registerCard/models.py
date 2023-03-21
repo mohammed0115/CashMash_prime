@@ -16,7 +16,7 @@ class Register(models.Model):
     This is for an abstract base class for the shared fields in Consumer Transaction reports.
     """
     applicationId         = models.CharField(max_length=100)
-    tranDateTime          = models.DateTimeField()  # DDMMYYhhmmss / string(12) in EBS docs
+    tranDateTime          = models.CharField(max_length=12)  # DDMMYYhhmmss / string(12) in EBS docs
     UUID                  = models.CharField(max_length=36, verbose_name='UUID')  # Universally Unique Identifier. This field should be sent with every request and is unique per request.
     expDate               = models.CharField(max_length=5,null=True)
     IPIN                  = models.CharField(max_length=250,null=True) 
