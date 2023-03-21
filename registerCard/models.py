@@ -74,4 +74,4 @@ class Register(models.Model):
     bankId =models.CharField(max_length=3)
     job  = models.CharField(max_length=50,null=True)
     email =models.EmailField(_('email address'), db_index=True, blank=True, null=True)
-    registrationType = models.CharField(_("registrationType"), max_length=2,choices=('01','10','12' , '00'))
+    registrationType = models.CharField(_("registrationType"), max_length=2,choices=(('01',_("virtal")),('10',_("physical IPIn")),('12',_("pythical 12") ), ('00',_("virtual00"))))
