@@ -27,7 +27,7 @@ from .models import TopUpCardTransaction
 
 from .permissions import HasValidAPIKey, IsCardHolderUser
 from .serializers import CardHolderTopUpTransactionRetrieveSerializer, CardTransferAPISerializer, \
-    GenerateVoucherConsumerAPISerializer, ServicePaymentConsumerAPISerializer, BillInquiryConsumerAPISerializer, \
+    GenerateVoucherConsumerAPISerializer, ServicePaymentConsumerAPISerializer, BillInquiryConsumerAPISerializerPan, \
     PaymentConsumerAPISerializer, TransactionStatusConsumerAPISerializer,\
         BaseConsumerAPISerializer,CardBalanceInquirySerializer,ChangeCardsIpin,\
             RegisterSerializer,QRPurchaseSerializer,QRRefundSerializer,CompletecardregistrationSerializer,\
@@ -469,7 +469,7 @@ class GetBill(EBSRequestAPIView):
     """
     authentication_classes = ()
     permission_classes = ()
-    serializer_class = BillInquiryConsumerAPISerializer
+    serializer_class = BillInquiryConsumerAPISerializerPan
     ebs_service_path = 'getBill'
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
