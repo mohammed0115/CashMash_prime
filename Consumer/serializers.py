@@ -218,8 +218,9 @@ class RegisterSerializer(BasicUserAPISerializer,CardRequiredConsumerAPISerialize
 
 class BalanceInqueryAPISerializer(EntitySerializer,
                                   authenticationSerializer,
-                                #   BasicUserAPISerializer,
+                                  BasicUserAPISerializer,
                                   FromAccountConsumerAPISerializer,
+                                  BaseConsumerAPISerializer
                                   ):
     PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
     # IPIN = serializers.CharField(max_length=88, required=False,allow_null=True)
