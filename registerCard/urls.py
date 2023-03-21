@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import path,include
 from registerCard.views import *
 from rest_framework.urlpatterns import format_suffix_patterns
-
+from rest_framework.routers import DefaultRouter
 urlpatterns = [
     path(
         "register/Golden/",
