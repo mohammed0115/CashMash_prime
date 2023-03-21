@@ -12,7 +12,7 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     path(
         "register/Golden/",
-        csrf_exempt(RegisterStandardCard),
+        RegisterGolenCard.as_view(),
      
     ),
     path(

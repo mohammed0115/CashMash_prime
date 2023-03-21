@@ -100,7 +100,7 @@ class GoldenCardSerializer(RegisterSerializer):
 #                   'response_status', 'transaction_fee', 'additional_amount')    
 class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                          userPasswordserializer,BaseConsumerAPISerializer,
-                         CardRequiredInfoAPISerializer,
+                         CardRequiredInfoAPISerializer,phoneNoSerializers,
                          PanSerializer
                          ):
     registrationType      = serializers.CharField(max_length=2,allow_null=False)

@@ -49,7 +49,7 @@ def RegisterVirtualCard(request):
             return Response(json.loads(resonse), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-"""
+
 class RegisterGolenCard(EBSRequestAPIView):
     
     authentication_classes = ()
@@ -83,7 +83,7 @@ class RegisterGolenCard(EBSRequestAPIView):
                 del ebs_response_content_json['originalTransaction']['applicationId']
 
         return ebs_response_content_json
-    
+ """   
 
 class RegisterGolenCard(generics.GenericAPIView):
     permission_classes = ()
