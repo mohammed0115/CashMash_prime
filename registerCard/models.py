@@ -29,7 +29,7 @@ class Register(models.Model):
     transaction_id = models.CharField(max_length=40,null=True)  # our ID for transaction
     phoneNo = models.CharField(max_length=12,null=True)  # store the current mobile number for the cardholder
     userName = models.CharField(max_length=30,null=True)
-    userPassword=models.CharField(max_length=30,null=True)
+    userPassword=models.CharField(max_length=250,null=True)
     Phone_No = "Phone No"
     Meter_No="Meter No"
     Credit_Card ="Credit Card"
