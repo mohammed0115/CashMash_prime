@@ -91,17 +91,20 @@ class phoneNoSerializers(serializers.Serializer):
 class GoldenCardSerializer(RegisterSerializer):
     model=Register
     fields="__all__"
-class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
-                         userPasswordserializer,BaseConsumerAPISerializer,
-                         CardRequiredInfoAPISerializer,
-                         PanSerializer
-                         ):
-    registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
-    # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
-    panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
-    # job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
-    # email                 =serializers.EmailField( required=False,allow_null=True)
-    # extraInfo             =extraInforSerializer(required=False)
+# class CardHolderTopUpTransactionRetrieveSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = TopUpCardTransaction
+#         # Terminal ID and EBS approval codes and references are not returned as they aren't useful for a card holder
+#         fields = ('transaction_id', 'tranDateTime', 'last_4_digits_of_pan',
+#                   'tranAmount', 'tranCurrency', 'response_message',
+#                   'response_status', 'transaction_fee', 'additional_amount')    
+class PhysicalCardSerializer(serializers.ModelSerializer):
+    # registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
+    # # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
+    # panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
+    # # job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
+    # # email                 =serializers.EmailField( required=False,allow_null=True)
+    # # extraInfo             =extraInforSerializer(required=False)
     """
 {
        "applicationId":"ITQAN",
@@ -122,8 +125,29 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
         "panCategory": "Standard"
         }
 """
-    
-    
+    class Meta:
+        model=Register
+        fields=['tranDateTime',
+                'UUID',
+                'userName',
+                'entityId',
+                'entityType',
+                'entityGroup',
+                'phoneNo',
+                'registrationType',
+                'userPassword',
+                # 'financialInstitutionId',
+                'panCategory',
+                # 'job',
+                # 'email',
+                'PAN',
+                'IPIN',
+                'expDate',
+                # 'mbr'
+                ]
+    # def get_validation_exclusions(self):
+        # exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
+        # return exclusions + ['mbr']
     
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
