@@ -241,17 +241,17 @@ class BillInquiryConsumerAPISerializer(
         userPassword
         entityId
         entityType
-        PAN
-        expDate
-        mbr
+        # PAN
+        # expDate
+        # mbr
         payeeId
         paymentInfo
         authenticationType
     
     """
     # no extra fields, just the combined CardRequiredConsumerAPISerializer and PaymentInfoConsumerAPISerializer fields
-    # PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
-    # IPIN = serializers.CharField(max_length=88, required=False,allow_null=True)
-    # expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    IPIN = serializers.CharField(max_length=88, required=False,allow_null=True)
+    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
     mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)  
 
