@@ -12,28 +12,28 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     path(
         "register/Golden/",
-        RegisterGolenCard.as_view(),
+        csrf_exempt(RegisterStandardCard),
      
     ),
     path(
         "register/Agent/",
-        RegisterAgentCard.as_view(),
+        csrf_exempt(RegisterStandardCard),
         name="register_Agent",
     ),
     path(
         "register/Silver/",
-        registerSilverCard.as_view(),
+        csrf_exempt(RegisterStandardCard),
         name="register_Silver",
     ),
    path(
         "register/Virtual/",
-        VirtualCard.as_view(),
+        csrf_exempt(RegisterVirtualCard),
         name="register_VirtualCard",
     ),
-    # path(
-    #     "register/List/",
-    #     csrf_exempt(RegisterList.as_view()),
-    #     name="listCard",
-    # ),
+    path(
+        "register/standard/",
+        csrf_exempt(RegisterStandardCard),
+        name="standard_card",
+    ),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

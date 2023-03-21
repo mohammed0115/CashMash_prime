@@ -4,7 +4,7 @@ import requests
 import json
 from EBS_CONSUMER_API.models import ebs_consumer
 # Create your views here.
-class Ebs:
+class Ebs(object):
     services_list=['/getPublicKey',
                    '/register',
                    '/completeCardRegistration',
@@ -69,7 +69,7 @@ class Ebs:
         data['newUserPassword'] =newUserPassword
         data['adminUserName'] =adminUserName
         return self.post(self.services_list[2],data)
-    def register_physical(  self,
+    def register_physical_standard(  self,
                             tranDateTime,
                             UUID,
                             PAN,
@@ -95,8 +95,8 @@ class Ebs:
         data["phoneNo"] = phoneNo
         data["registrationType"] = registrationType
         data["IPIN"] = IPIN
-        data['mbr']=mbr
-        data["panCategory"] = panCategory
+        # data['mbr']=mbr
+        # data["panCategory"] = panCategory
         return self.post(self.services_list[1],data)
     def BalanceInquiry_auth11(self,
                             tranDateTime,
