@@ -92,7 +92,10 @@ class GoldenCardSerializer(RegisterSerializer):
     model=Register
     fields="__all__"
 class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
-                         userPasswordserializer,BaseConsumerAPISerializer,CardRequiredInfoAPISerializer):
+                         userPasswordserializer,BaseConsumerAPISerializer,
+                         CardRequiredInfoAPISerializer,
+                         PanSerializer
+                         ):
     registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=2,allow_null=False)
     # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
     panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
@@ -137,7 +140,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                 'PAN',
                 'IPIN',
                 'expDate',
-                'mbr'
+                # 'mbr'
                 ]
     # def get_validation_exclusions(self):
         # exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
