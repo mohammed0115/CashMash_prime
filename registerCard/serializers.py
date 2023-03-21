@@ -99,7 +99,7 @@ class GoldenCardSerializer(RegisterSerializer):
 #                   'tranAmount', 'tranCurrency', 'response_message',
 #                   'response_status', 'transaction_fee', 'additional_amount')    
 class PhysicalCardSerializer(serializers.ModelSerializer):
-    tranDateTime = serializers.DateTimeField(format="%d%m%y%H%M%S")
+    tranDateTime = serializers.RegexField('^[0-9]{12}',max_length=12,allow_null=False)
     UUID = serializers.RegexField('^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',max_length=36, min_length=36, allow_blank=False)
     # registrationType      = serializers.CharField(validators=[registrationTypeValidator()],max_length=2,allow_null=False)
     # # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
