@@ -218,11 +218,13 @@ class RegisterSerializer(BasicUserAPISerializer,CardRequiredConsumerAPISerialize
 
 class BalanceInqueryAPISerializer(EntitySerializer,
                                   authenticationSerializer,
-                                  BasicUserAPISerializer,
-                                  CardRequiredConsumerAPISerializer,
+                                #   BasicUserAPISerializer,
                                   FromAccountConsumerAPISerializer,
                                   ):
-    pass
+    PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    # IPIN = serializers.CharField(max_length=88, required=False,allow_null=True)
+    expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
 class BillInquiryConsumerAPISerializer(EntitySerializer,
                                        BasicUserAPISerializer, 
                                        BaseConsumerAPISerializer,

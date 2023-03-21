@@ -31,15 +31,15 @@ class BalanceInquiryView(EBSRequestAPIView):
         if serializer.is_valid():
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
-            # try:
-            #     ebs_response = self.ebs_post(payload)
-            # except requests.exceptions.ConnectionError:
-            #     # logger = self.get_logger()
-            #     url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
-            #     Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
                 
 
-            return Response(payload)
+            return Response(json.loads(ebs_response.text))
         else:
             return Response(serializer.errors)
         
