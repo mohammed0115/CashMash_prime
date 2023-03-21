@@ -81,20 +81,38 @@ class Ebs(object):
                             phoneNo,
                             registrationType,
                             IPIN,
+                            expDate,
                             mbr,
                             panCategory):
         data = {}
-        data["UUID"] = UUID
-        data["tranDateTime"] = tranDateTime
-        data["PAN"] = PAN
-        data["entityId"] = entityId
-        data["entityType"] = entityType
-        data["entityGroup"] = entityGroup
-        data['userName']=userName
-        data["userPassword"] = userPassword
-        data["phoneNo"] = phoneNo
-        data["registrationType"] = registrationType
-        data["IPIN"] = IPIN
+        data={
+    #     "applicationId":"ITQAN",
+        "entityId":entityId, 
+        "entityType": entityType,
+        "entityGroup": entityGroup, 
+        "userName": userName, 
+        "tranDateTime":tranDateTime,
+        "UUID":UUID,
+        "IPIN":IPIN,
+        "userPassword":userPassword,
+        "phoneNo": phoneNo, 
+        "registrationType": registrationType,
+        "PAN":PAN,
+        "expDate": expDate, 
+        #  "mbr": "0", 
+        #  "panCategory": "Standard"
+        }
+        # data["UUID"] = UUID
+        # data["tranDateTime"] = tranDateTime
+        # data["PAN"] = PAN
+        # data["entityId"] = entityId
+        # data["entityType"] = entityType
+        # data["entityGroup"] = entityGroup
+        # data['userName']=userName
+        # data["userPassword"] = userPassword
+        # data["phoneNo"] = phoneNo
+        # data["registrationType"] = registrationType
+        # data["IPIN"] = IPIN
         # data['mbr']=mbr
         # data["panCategory"] = panCategory
         return self.post(self.services_list[1],data)
