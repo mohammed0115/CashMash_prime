@@ -29,8 +29,6 @@ class BalanceInquiryView(EBSRequestAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            # serializer = self.get_serializer(data=request.data)
-            # serializer.is_valid(raise_exception=True)
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:

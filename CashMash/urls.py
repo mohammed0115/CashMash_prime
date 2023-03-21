@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.routers import DefaultRouter
 from django.conf import settings
 from django.conf.urls.static import static
-
+from Balance.views import *
 admin.site.site_header = 'CashMash Prime'
 admin.site.index_title = 'CashMash Prime'                 # default: "Site administration"
 admin.site.site_title = 'CashMash Prime' 
@@ -31,12 +31,15 @@ router = DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('PayeeList/', views.PayeeListView.as_view()),
-    path('CardTransfer/', views.CardTransferView.as_view()),
-    path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
-    path('isAlive/', csrf_exempt(views.echoTest)),
-    path('phone/Balance/', csrf_exempt(views.balance_inquiry_for_phone)),
     path('GetPublicKey/',csrf_exempt(views.get_public_key)),
     path('TransactionStatus/', views.TransactionStatusView.as_view()),
+    path('isAlive/', csrf_exempt(views.echoTest)),
+
+
+
+    path('CardTransfer/', views.CardTransferView.as_view()),
+    path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
+    path('phone/Balance/', csrf_exempt(views.balance_inquiry_for_phone)),
     path('Payment/',views.PaymentView.as_view()),
     path('ServicePayment/', views.ServicePaymentView.as_view()),
     path('GetBill/', views.GetBill.as_view()),
@@ -45,17 +48,17 @@ urlpatterns = [
     #balance_inquiry_for_PAN
     path('EchoTest/', views.EchoTestView.as_view()),
     path('RequestPinChange/', views.RequestPinChangeView.as_view()),
-    path('Regsiter/', csrf_exempt(views.Regsiter)),
+    # path('Regsiter/', csrf_exempt(views.Regsiter)),
     path('completeCardRegistration/', views.completeCardRegistration.as_view()),
     path('forgetPassword/', views.forgetPassword.as_view()),
     path('changePassword/', views.changePassword.as_view()),
     path('doQRPurchase/', views.doQRPurchase.as_view()),
     path('doQRRefund/', views.doQRRefund.as_view()),
     path('accounts/', include('accounts.urls')),
-    # path('/', include('accounts.urls')),
+    #
 
-
-
+    path('EntityId/GetBill/',GetBill.as_view()),
+    path('EntityId/Balance/',BalanceInquiryView.as_view()),
     path('EntityId/Card/', include('registerCard.urls')),
         
 
