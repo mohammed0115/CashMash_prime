@@ -122,26 +122,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
         "panCategory": "Standard"
         }
 """
-    class Meta:
-        model=Register
-        fields=['tranDateTime',
-                'UUID',
-                'userName',
-                'entityId',
-                'entityType',
-                'entityGroup',
-                'phoneNo',
-                'registrationType',
-                'userPassword',
-                # 'financialInstitutionId',
-                'panCategory',
-                # 'job',
-                # 'email',
-                'PAN',
-                'IPIN',
-                'expDate',
-                # 'mbr'
-                ]
+    
     # def get_validation_exclusions(self):
         # exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
         # return exclusions + ['mbr']

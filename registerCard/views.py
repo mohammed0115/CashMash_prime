@@ -28,9 +28,9 @@ def RegisterStandardCard(request):
     if request.method == 'POST':
         serializer = PhysicalCardSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            resonse=ebs_services.register_physical_standard(**serializer.data)
-            return Response(json.loads(resonse), status=status.HTTP_201_CREATED)
+            # serializer.save()
+            # resonse=ebs_services.register_physical_standard(**serializer.data)
+            return Response(json.loads(serializer.data), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 @authentication_classes(())
