@@ -258,7 +258,7 @@ class BillInquiryConsumerAPISerializer(
 class BillInquiryConsumerAPISerializerPan(
                                        
                                        BaseConsumerAPISerializer,
-                                       authenticationSerializer,
+                                    #    authenticationSerializer,
                                        PaymentInfoConsumerAPISerializer
                                        ):
     
