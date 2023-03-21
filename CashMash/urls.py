@@ -56,7 +56,7 @@ urlpatterns = [
 
 
 
-    path('Card/', include('registerCard.urls')),
+    path('EntityId/Card/', include('registerCard.urls')),
         
 
     

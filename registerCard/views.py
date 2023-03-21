@@ -13,7 +13,7 @@ from django.conf import settings
 from .models import *
 from rest_framework import generics
 from EbsAPIs.views import Ebs
-ebs_services=ebs()
+ebs_services=Ebs()
 
 @api_view(['POST'])
 @authentication_classes(())
