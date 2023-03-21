@@ -83,8 +83,7 @@ class RegisterGolenCard(EBSRequestAPIView):
                 del ebs_response_content_json['originalTransaction']['applicationId']
 
         return ebs_response_content_json
- """   
-
+"""   
 class RegisterGolenCard(generics.GenericAPIView):
     permission_classes = ()
     authentication_classes = ()
