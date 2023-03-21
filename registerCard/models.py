@@ -28,7 +28,7 @@ class Register(models.Model):
     request_date = models.DateTimeField(auto_now_add=True)  # our timestamp
     transaction_id = models.CharField(max_length=40,null=True)  # our ID for transaction
     phoneNo = models.CharField(max_length=12,null=True)  # store the current mobile number for the cardholder
-    username = models.CharField(max_length=30,null=True)
+    userName = models.CharField(max_length=30,null=True)
     userPassword=models.CharField(max_length=30,null=True)
     Phone_No = "Phone No"
     Meter_No="Meter No"
@@ -37,7 +37,7 @@ class Register(models.Model):
     Mobile_Wallet="Mobile Wallet"
     
     ENTITY_TYPE_CHOICES = (
-        (Phone_No, _('Phone NO')),
+        (Phone_No, _('Phone No')),
         (Meter_No, _('Meter No')),
         (Credit_Card, _('Credit Card')),
         (Cash_Card, _('Credit Card')),
