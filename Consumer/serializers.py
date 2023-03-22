@@ -183,7 +183,7 @@ class CompletecardregistrationSerializer(BaseConsumerAPISerializer,userPasswords
     otp  =serializers.CharField(max_length=6, allow_null=False)
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
     securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
-    
+
 class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,BasicUserAPISerializer):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
 class QRRefundSerializer(BasicUserAPISerializer,CompletecardregistrationSerializer):
@@ -290,3 +290,5 @@ class PaymentConsumerAPISerializerEntity(BillInquiryConsumerAPISerializer,
                                      PositiveAmountSerializer):
     # no extra fields
     pass
+class CardInfoSerializer(BaseConsumerAPISerializer):
+     PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])

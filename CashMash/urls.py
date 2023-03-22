@@ -33,8 +33,10 @@ urlpatterns = [
     path('PayeeList/', views.PayeeListView.as_view()),
     path('GetPublicKey/',csrf_exempt(views.get_public_key)),
     path('TransactionStatus/', views.TransactionStatusView.as_view()),
+    path('CustomerInformation/', views.CustomerInfoView.as_view()),
     path('isAlive/', csrf_exempt(views.echoTest)),
-
+    path('GetFileEncryptionKey/', csrf_exempt(views.echoTest)),
+    #GetFileEncryptionKey
 
     path('CardTransfer/', views.CardTransferView.as_view()),
     path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),

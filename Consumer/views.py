@@ -31,7 +31,7 @@ from .serializers import CardHolderTopUpTransactionRetrieveSerializer, CardTrans
     PaymentConsumerAPISerializer, TransactionStatusConsumerAPISerializer,\
         BaseConsumerAPISerializer,CardBalanceInquirySerializer,ChangeCardsIpin,\
             RegisterSerializer,QRPurchaseSerializer,QRRefundSerializer,CompletecardregistrationSerializer,\
-                ChangePasswordSerializer,ForgetPasswordSerializer
+                ChangePasswordSerializer,ForgetPasswordSerializer,CardInfoSerializer
     
 from .filters import IsTopUpTransactionCardOwnerFilterBackend, TopUpTransactionFilter
 from .authentication import CardHolderAccessTokenAuthentication
@@ -186,6 +186,27 @@ def echoTest(request):
         response["responseMessage"] = resp["responseMessage"]
         response["responseCode"] = resp["responseCode"]
         response["responseStatus"] = resp["responseStatus"]
+        # response["pubKeyValue"] = resp["pubKeyValue"]
+        # response["UUID"]  = data["UUID"]
+        print(data["UUID"])
+        return Response(resp)
+
+
+@api_view(['POST'])
+@authentication_classes(())
+@permission_classes(())
+def GetFileEncryptionKey(request):
+        response = base_response
+        data = {}
+        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
+        data["UUID"] = str(uuid.uuid4())
+        data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
+        
+        resp = json.loads(requests.post(
+            settings.EBS_CONSUMER_API["END_POINT"]+ "/getFileEncryptionKey", json=data, verify=False).text)
+        # response["responseMessage"] = resp["responseMessage"]
+        # response["responseCode"] = resp["responseCode"]
+        # response["responseStatus"] = resp["responseStatus"]
         # response["pubKeyValue"] = resp["pubKeyValue"]
         # response["UUID"]  = data["UUID"]
         print(data["UUID"])
@@ -653,6 +674,16 @@ class EchoTestView(EBSRequestAPIView):
 #     ebs_service_path = 'doCardTransfer'
 
 
+class CustomerInfoView(EBSRequestAPIView):
+    """
+    Request card balance.
+    This implements the request 3.9 'Balance Inquiry' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = CardInfoSerializer
+    ebs_service_path = 'getCustomerInfo'
 
 class BalanceInquiryView(EBSRequestAPIView):
     """
