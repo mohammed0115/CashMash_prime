@@ -35,7 +35,7 @@ urlpatterns = [
     path('TransactionStatus/', views.TransactionStatusView.as_view()),
     path('CustomerInformation/', views.CustomerInfoView.as_view()),
     path('isAlive/', csrf_exempt(views.echoTest)),
-    path('GetFileEncryptionKey/', csrf_exempt(views.echoTest)),
+    path('GetFileEncryptionKey/', csrf_exempt(views.GetFileEncryptionKey)),
     #GetFileEncryptionKey
 
     path('CardTransfer/', views.CardTransferView.as_view()),
