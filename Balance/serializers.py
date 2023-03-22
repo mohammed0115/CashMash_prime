@@ -74,26 +74,13 @@ class PaymentInfoConsumerAPISerializer(serializers.Serializer):
     payeeId = serializers.RegexField('^[0-9]*$', max_length=10, min_length=10, allow_blank=False)
     paymentInfo = serializers.CharField(min_length=1, max_length=999, allow_blank=False)
 
-# class CardTransferAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
-#                                 PositiveAmountSerializer):
-#     toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
-#     toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
-
-#dynamicFees
 
 
 
 
-class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
-                                          PositiveAmountSerializer):
-    serviceProviderId = serializers.CharField(allow_null=False, min_length=10, max_length=10, required=True)
-    # serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
-    
 
-class PaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
-                                   PaymentInfoConsumerAPISerializer, PositiveAmountSerializer):
-    # no extra fields
-    pass
+
+
 
 
 
@@ -143,10 +130,7 @@ class CardBalanceInquirySerializer(CardRequiredConsumerAPISerializer, FromAccoun
     pass
 
 
-class ChangeCardsIpin(CardRequiredConsumerAPISerializer):
-    newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
-    
-    
+ 
     
 
 class EntitySerializer(serializers.Serializer):
@@ -178,11 +162,7 @@ class CustomerSerializer(serializers.Serializer):
     customerIdType        =serializers.CharField(max_length=36,required=False,allow_null=False)
 class userPasswordserializer(serializers.Serializer):
     userPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
-class CompletecardregistrationSerializer(BaseConsumerAPISerializer,userPasswordserializer):
-    IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
-    otp  =serializers.CharField(max_length=6, allow_null=False)
-    securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
-    securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
+
     
 class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,BasicUserAPISerializer):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
@@ -198,22 +178,8 @@ class ForgetPasswordSerializer(BasicUserAPISerializer):
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
     securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
-class RegisterSerializer(BasicUserAPISerializer,CardRequiredConsumerAPISerializer):
-    registrationType      = serializers.CharField(max_length=2,required=False,allow_null=False)
-    entityGroup           = serializers.CharField(max_length=1,required=False,allow_null=False)
-    fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,required=False,allow_null=False)
-    panCategory           =serializers.CharField(max_length=10,required=False,allow_null=False)
-    dateOfBirth           = serializers.CharField(max_length=10,required=False,allow_null=False)
-    customerIdNumber      = serializers.CharField(max_length=40,required=False,allow_null=False)
-    customerIdType        =serializers.CharField(max_length=36,required=False,allow_null=False)
-    # bankAccountNumber     =serializers.CharField(max_length=4,required=False,allow_null=False)
-    bankAccountType       =serializers.CharField(max_length=12,required=False,allow_null=False)
-    bankBranchId          =serializers.CharField(max_length=3,required=False,allow_null=False)
-    bankId                =serializers.CharField(max_length=4,required=False,allow_null=False)
-    job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
-    email                 =serializers.EmailField(required=False,allow_null=False)
-    extraInfo             =extraInforSerializer()
+
+    
     
 
 
@@ -261,7 +227,7 @@ class BillInquiryConsumerAPISerializer(
 class BillInquiryConsumerAPISerializerPan(
                                        
                                        BaseConsumerAPISerializer,
-                                    #    authenticationSerializer,
+                                       authenticationSerializer,
                                        PaymentInfoConsumerAPISerializer
                                        ):
     
@@ -290,3 +256,31 @@ class PaymentConsumerAPISerializerEntity(BillInquiryConsumerAPISerializer,
                                      PositiveAmountSerializer):
     # no extra fields
     pass
+class CompletecardregistrationSerializer(BaseConsumerAPISerializer,userPasswordserializer):
+    IPIN    = serializers.CharField(max_length=88, min_length=88, allow_null=False)
+    otp     = serializers.CharField(max_length=6, allow_null=False)
+    extraInfo    = extraInforSerializer()
+
+
+class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
+                                          PositiveAmountSerializer):
+    serviceProviderId = serializers.CharField(allow_null=False, min_length=10, max_length=10, required=True)
+    # serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
+class CardTransferAPISerializer( 
+                                 BaseConsumerAPISerializer,
+                                 authenticationSerializer,
+                                 EntitySerializer,
+                                 FromAccountConsumerAPISerializer,
+                                 PositiveAmountSerializer):
+    mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
+    userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
+    toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
+
+class ChangeCardsIpin(BaseConsumerAPISerializer,
+                                 authenticationSerializer,
+                                 EntitySerializer):
+    newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
+    userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
+    
+   

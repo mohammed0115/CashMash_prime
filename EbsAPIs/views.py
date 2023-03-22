@@ -222,3 +222,23 @@ class Ebs(object):
         data["registrationType"] = "01"
         
         return self.post(self.services_list[1],data)
+    def comleteCardRegisteration(self,
+                                 tranDateTime,
+                                 UUID,
+                                 originalTranUUID,
+                                 userPassword,
+                                 otp,
+                                 IPIN,
+                                 securityQuestion,
+                                 securityQuestionAnswer):
+        data = {}
+        data["UUID"] = UUID
+        data["tranDateTime"] = tranDateTime
+        data['originalTranUUID']= originalTranUUID
+        data['userPassword']=userPassword
+        data['otp']=otp
+        data['IPIN']=IPIN
+        data['securityQuestion']=securityQuestion
+        data['securityQuestionAnswer']=securityQuestionAnswer
+        
+        return self.post(self.services_list[0],data) 

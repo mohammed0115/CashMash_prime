@@ -14,6 +14,7 @@ from django.conf import settings
 from .models import *
 from rest_framework import generics
 from EbsAPIs.views import Ebs
+from Balance.serializers import CompletecardregistrationSerializer
 ebs_services=Ebs()
 
 @api_view(['POST'])
@@ -83,6 +84,32 @@ class RegisterGolenCard(EBSRequestAPIView):
                 del ebs_response_content_json['originalTransaction']['applicationId']
 
         return ebs_response_content_json
+    
+    
+class completeCardRegistration(EBSRequestAPIView):
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = CompletecardregistrationSerializer
+    ebs_service_path = 'completeCardRegistration'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+        
 """   
 class RegisterGolenCard(generics.GenericAPIView):
     permission_classes = ()

@@ -36,31 +36,32 @@ urlpatterns = [
     path('isAlive/', csrf_exempt(views.echoTest)),
 
 
-
     path('CardTransfer/', views.CardTransferView.as_view()),
     path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
-    path('phone/Balance/', csrf_exempt(views.balance_inquiry_for_phone)),
     path('Payment/',views.PaymentView.as_view()),
     path('ServicePayment/', views.ServicePaymentView.as_view()),
     path('GetBill/', views.GetBill.as_view()),
     path('GenerateVoucher/', views.GenerateVoucherView.as_view()),
-    path('', include('api.urls')),
-    #balance_inquiry_for_PAN
     path('EchoTest/', views.EchoTestView.as_view()),
     path('RequestPinChange/', views.RequestPinChangeView.as_view()),
-    # path('Regsiter/', csrf_exempt(views.Regsiter)),
     path('completeCardRegistration/', views.completeCardRegistration.as_view()),
     path('forgetPassword/', views.forgetPassword.as_view()),
     path('changePassword/', views.changePassword.as_view()),
     path('doQRPurchase/', views.doQRPurchase.as_view()),
     path('doQRRefund/', views.doQRRefund.as_view()),
     path('accounts/', include('accounts.urls')),
-    #
+    
 
     path('EntityId/GetBill/',GetBill.as_view()),
     path('EntityId/Balance/',BalanceInquiryView.as_view()),
     path('EntityId/Card/', include('registerCard.urls')),
-        
+    path('EntityId/Payment/',PaymentView.as_view()),
+    path('EntityId/CardTransfer/', CardTransferView.as_view()),
+    path('EntityId/forgetPassword/', forgetPassword.as_view()),
+    path('EntityId/changePassword/', changePassword.as_view()),
+    path('EntityId/doQRPurchase/', doQRPurchase.as_view()),
+    path('EntityId/doQRRefund/', doQRRefund.as_view()),
+    path('EntityId/RequestPinChange/',RequestPinChangeView.as_view()),
 
     
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

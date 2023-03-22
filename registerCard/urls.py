@@ -25,6 +25,13 @@ urlpatterns = [
         csrf_exempt(RegisterStandardCard),
         name="register_Silver",
     ),
+    path(
+    
+        "register/completeCardRegistration/",
+        completeCardRegistration.as_view(),
+        name="completeCardRegistration",
+
+    ),
    path(
         "register/Virtual/",
         csrf_exempt(RegisterVirtualCard),
