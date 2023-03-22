@@ -166,8 +166,7 @@ class userPasswordserializer(serializers.Serializer):
     
 class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,BasicUserAPISerializer):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
-class QRRefundSerializer(BasicUserAPISerializer,CompletecardregistrationSerializer):
-    authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
+
 class ChangePasswordSerializer(BasicUserAPISerializer):
     IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
@@ -283,4 +282,5 @@ class ChangeCardsIpin(BaseConsumerAPISerializer,
     newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
     
-   
+class QRRefundSerializer(BasicUserAPISerializer,CompletecardregistrationSerializer):
+    authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
