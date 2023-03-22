@@ -198,7 +198,7 @@ def echoTest(request):
 def GetFileEncryptionKey(request):
         response = base_response
         data = {}
-        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
+        data["applicationId"] = "ITQAN"
         data["UUID"] = str(uuid.uuid4())
         data["tranDateTime"] = datetime.datetime.now().strftime("%d%m%y%H%M%S")
         
