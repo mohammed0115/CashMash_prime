@@ -6,7 +6,7 @@ from django.utils.timezone import localtime, now
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.conf import settings
-from .models import TopUpCardTransaction
+# from .models import TopUpCardTransaction
 
 class PanValidator(RegexValidator):
     code = 'invalid'
@@ -119,7 +119,7 @@ class CardTransferAPISerializer(CardRequiredConsumerAPISerializer, FromAccountCo
 
 class CardHolderTopUpTransactionRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TopUpCardTransaction
+        # model = TopUpCardTransaction
         # Terminal ID and EBS approval codes and references are not returned as they aren't useful for a card holder
         fields = ('transaction_id', 'tranDateTime', 'last_4_digits_of_pan',
                   'tranAmount', 'tranCurrency', 'response_message',
