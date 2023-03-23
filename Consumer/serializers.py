@@ -84,10 +84,11 @@ class PaymentInfoConsumerAPISerializer(serializers.Serializer):
 
 
 
-class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
-                                          PositiveAmountSerializer):
+class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer,
+                                           FromAccountConsumerAPISerializer,
+                                          PositiveAmountSerializer,authenticationSerializer):
     serviceProviderId = serializers.CharField(allow_null=False, min_length=10, max_length=10, required=True)
-    # serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
+    serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
     
 
 class PaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
@@ -259,9 +260,9 @@ class BillInquiryConsumerAPISerializer(
     mbr = serializers.CharField(max_length=3, min_length=1, required=False,allow_null=True)
     userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
 class BillInquiryConsumerAPISerializerPan(
-                                       
+                                       FromAccountConsumerAPISerializer,
                                        BaseConsumerAPISerializer,
-                                    #    authenticationSerializer,
+                                       authenticationSerializer,
                                        PaymentInfoConsumerAPISerializer
                                        ):
     
