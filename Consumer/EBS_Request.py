@@ -78,7 +78,7 @@ class BaseEBSAPIView(views.APIView):
                 url, status_code, response_data, request_data)
 
             if raise_exception:
-                raise ValidationError({"EBS_error": [ebs_response_json.get('responseMessage', '')]},
+                raise ValidationError(ebs_response_json,
                                       code=ebs_response_json['responseCode'])
             else:
                 return False

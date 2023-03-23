@@ -276,7 +276,7 @@ class CardTransferAPISerializer(
     toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
     toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
 
-class ChangeCardsIpin(CardRequiredConsumerAPISerializer,BaseConsumerAPISerializer,
+class ChangeCardsIpin(BaseConsumerAPISerializer,
                                  authenticationSerializer,
                                  EntitySerializer):
     newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
