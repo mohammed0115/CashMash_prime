@@ -88,7 +88,7 @@ class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer,
                                            FromAccountConsumerAPISerializer,
                                           PositiveAmountSerializer,authenticationSerializer):
     serviceProviderId = serializers.CharField(allow_null=False, min_length=10, max_length=10, required=True)
-    serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False,allow_null=False)
+    serviceInfo = serializers.CharField(allow_null=True, min_length=1, max_length=100, required=False)
     
 
 class PaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
