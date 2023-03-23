@@ -64,6 +64,9 @@ urlpatterns = [
     path('EntityId/doQRPurchase/', doQRPurchase.as_view()),
     path('EntityId/doQRRefund/', doQRRefund.as_view()),
     path('EntityId/RequestPinChange/',RequestPinChangeView.as_view()),
-
+    path('EntityId/GenerateVoucher/', GenerateVoucherView.as_view()),
+    # path('EntityId/doQRRefund/', doQRRefund.as_view()),
+    path('EntityId/CompleteTransaction/',CompleteTransaction.as_view()),
+    #
     
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

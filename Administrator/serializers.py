@@ -91,12 +91,23 @@ class TransactionStatusConsumerAPISerializer(BaseConsumerAPISerializer):
     
 
 
-class CompleteTransactionSerializer(TransactionStatusConsumerAPISerializer):
-    otp     = serializers.CharField(max_length=6, allow_null=False)
 
 
 
 
+class GenerateVoucherConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer):
+    voucherNumber = serializers.CharField(validators=[VoucherNumberValidator()])
+    tranAmount = serializers.DecimalField(allow_null=False, max_digits=12, decimal_places=2, min_value=10)
+
+    def validate_tranAmount(self, tranAmount):
+        """
+        Check that the tranAmount is a multiple of ten.
+        The vouchers are usually cashed from ATMs so the amount needs to be suitable for that.
+        """
+        if tranAmount % 10 != 0:
+            raise serializers.ValidationError("Amount should be multiple of 10.", code='invalid_amount')
+
+        return tranAmount
     
     
     
@@ -270,22 +281,7 @@ class CardTransferAPISerializer(
     userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
     toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
     toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
-class GenerateVoucherConsumerAPISerializer(BaseConsumerAPISerializer,
-                                           authenticationSerializer,
-                                           EntitySerializer,
-                                            FromAccountConsumerAPISerializer):
-    voucherNumber = serializers.CharField(validators=[VoucherNumberValidator()])
-    tranAmount = serializers.DecimalField(allow_null=False, max_digits=12, decimal_places=2, min_value=10)
 
-    def validate_tranAmount(self, tranAmount):
-        """
-        Check that the tranAmount is a multiple of ten.
-        The vouchers are usually cashed from ATMs so the amount needs to be suitable for that.
-        """
-        if tranAmount % 10 != 0:
-            raise serializers.ValidationError("Amount should be multiple of 10.", code='invalid_amount')
-
-        return tranAmount
 class ChangeCardsIpin(BaseConsumerAPISerializer,
                                  authenticationSerializer,
                                  EntitySerializer):

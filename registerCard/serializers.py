@@ -72,25 +72,13 @@ class BankSerializer(serializers.Serializer):
 
 
 
-class RegisterSerializer(EntityUserAPISerializer,UserNameSerializer,
-                         userPasswordserializer,BaseConsumerAPISerializer,
-                         BankSerializer,CustomerSerializer,CardRequiredInfoAPISerializer,PanSerializer):
-    registrationType      = serializers.CharField(validators=[registrationTypeValidator],max_length=3,allow_null=False)
-    fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,allow_null=False, required=False,)
-    panCategory           =serializers.CharField(max_length=10,allow_null=False, required=False,)
-    dateOfBirth           = serializers.DateField(allow_null=False, required=False,format="%d-%m-%Y")
-    job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
-    email                 =serializers.EmailField(required=False,allow_null=False)
-    extraInfo             =extraInforSerializer()
+
     
     
 
 class phoneNoSerializers(serializers.Serializer):
     phoneNo = serializers.CharField(max_length=12,allow_null=False)
-class GoldenCardSerializer(RegisterSerializer):
-    model=Register
-    fields="__all__"
+
 # class CardHolderTopUpTransactionRetrieveSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = TopUpCardTransaction
@@ -152,10 +140,25 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
     # def get_validation_exclusions(self):
         # exclusions = super(PhysicalCardSerializer, self).get_validation_exclusions()
         # return exclusions + ['mbr']
-    
+class GoldSliverCardSerializer(PhysicalCardSerializer,BankSerializer,CustomerSerializer):
+    job                   =serializers.CharField(max_length=50, required=False,allow_null=True)
+    email                 =serializers.EmailField( required=False,allow_null=True)
+    extraInfo             =extraInforSerializer(required=False)
+    financialInstitutionId =serializers.CharField(max_length=4, required=False,allow_null=True)
+    fullName               = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
+    financialInstitutionId =serializers.CharField(max_length=4,allow_null=False, required=False,)
+    dateOfBirth           = serializers.DateField(allow_null=False, required=False,format="%d-%m-%Y")
+    job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
+    email                 =serializers.EmailField(required=False,allow_null=False)
+    extraInfo             =extraInforSerializer()
+
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
         model=Register
         fields=['tranDateTime','UUID','userName','entityId','entityType','entityGroup','phoneNo','registrationType'
                 ]
-    
+class UpdateCardRegistrationSerializer(EntityUserAPISerializer,UserNameSerializer,
+                         userPasswordserializer,BaseConsumerAPISerializer,
+                         CardRequiredInfoAPISerializer,
+                         PanSerializer):
+    registrationType      = serializers.CharField(max_length=2,allow_null=False)

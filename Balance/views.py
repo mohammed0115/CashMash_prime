@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 # Create your views here.
-from Consumer.EBS_Request import EBSRequestAPIView
-from Balance.serializers import *
 
+from Balance.serializers import *
+from Consumer.EBS_Request import EBSRequestAPIView
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,6 +15,79 @@ import uuid
 
 import json
 import time
+
+class GenerateVoucherView(EBSRequestAPIView):
+    """
+    Used to generate a voucher code that can be cashed out through ATM/POS.
+    This implements the request 3.14 'Generate Voucher' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = GenerateVoucherConsumerAPISerializer
+    ebs_service_path = 'generateVoucher'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                print(payload)
+                payload.update({'applicationId': 'ITQAN'})
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+    # transaction_model_class = GenerateVoucherTransaction
+
+    # def get_transaction_request_fields(self):
+    #     fields = {}
+    #     fields.update(self.common_transaction_request_fields)
+    #     fields.update({'voucher_number': 'voucherNumber'})
+    #     return fields
+
+    # def get_transaction_response_fields(self):
+    #     fields = {}
+    #     fields.update(self.common_transaction_response_fields)
+    #     fields.update({'voucher_code': 'voucherCode'})
+    #     return fields
+
+
+
+class CompleteTransaction(EBSRequestAPIView):
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = CompleteTransactionSerializer
+    ebs_service_path = 'completeTransaction'
+    # transaction_model_class = CardTransferAPISerializer
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                print(payload)
+                payload.update({'applicationId': 'ITQAN'})
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 class CardTransferView(EBSRequestAPIView):
     """
     Transfer money from one card to the other.
@@ -25,7 +98,7 @@ class CardTransferView(EBSRequestAPIView):
     authentication_classes = ()
     serializer_class = CardTransferAPISerializer
     ebs_service_path = 'doCardTransfer'
-    transaction_model_class = CardTransferAPISerializer
+    # transaction_model_class = CardTransferAPISerializer
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
