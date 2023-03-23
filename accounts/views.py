@@ -44,7 +44,7 @@ def generateOTP(phone):
 
 class LoginUserView(ObtainJSONWebTokenAPIView):
     serializer_class = CardHolderUserLoginRequestSerializer
-    permission_classes = (HasValidAPIKey,)
+    permission_classes = ()
 
     def get_response_payload(self, token, user=None, request=None):
         """
@@ -60,7 +60,7 @@ class LoginUserView(ObtainJSONWebTokenAPIView):
 
 
 class LogoutUserView(APIView):
-    permission_classes = (HasValidAPIKey,)
+    permission_classes = ()
     authentication_classes = (CardHolderAccessTokenAuthentication,)
 
     def post(self, request, *args, **kwargs):
@@ -77,8 +77,8 @@ class LogoutUserView(APIView):
                     )
 
 class RefreshUserTokenView(BaseRefreshUserTokenView):
-    permission_classes = (HasValidAPIKey, IsCardHolderUser,IsAuthenticated,)
-    authentication_classes = (CardHolderAccessTokenAuthentication,)
+    permission_classes = ()
+    authentication_classes = ()
     username_field = 'card_holder_mobile_number'
 
     def post(self, request, *args, **kwargs):
@@ -93,7 +93,7 @@ class RegisterUserView1(CreateAPIView):
     serializer_class = CardHolderUserCreationSerializer
 
 class RegisterUserView(ObtainJSONWebTokenAPIView):
-    permission_classes = (HasValidAPIKey,)
+    permission_classes = ()
     authentication_classes = ()
     username_field = 'card_holder_mobile_number'
     serializer_class = CardHolderUserCreationSerializer1
