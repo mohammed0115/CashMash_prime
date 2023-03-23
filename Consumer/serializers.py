@@ -144,7 +144,7 @@ class CardBalanceInquirySerializer(CardRequiredConsumerAPISerializer, FromAccoun
     pass
 
 
-class ChangeCardsIpin(CardRequiredConsumerAPISerializer,authenticationSerializer,FromAccountConsumerAPISerializer):
+class ChangeCardsIpin(CardRequiredConsumerAPISerializer):
     newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     
     

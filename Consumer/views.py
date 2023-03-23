@@ -501,7 +501,7 @@ class GetBill(EBSRequestAPIView):
             self.validated_data = serializer.validated_data
             try:
                 
-                payload.update({'applicationId': 'ITQAN','fromAccount':'440040583'})
+                # payload.update({'applicationId': 'ITQAN','fromAccount':'440040583'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
