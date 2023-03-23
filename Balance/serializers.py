@@ -254,6 +254,9 @@ class CompletecardregistrationSerializer(BaseConsumerAPISerializer,userPasswords
     IPIN    = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     otp     = serializers.CharField(max_length=6, allow_null=False)
     extraInfo    = extraInforSerializer()
+    originalTranUUID = serializers.RegexField(
+        '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        max_length=36, min_length=36, allow_blank=False)
 
 
 class ServicePaymentConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
