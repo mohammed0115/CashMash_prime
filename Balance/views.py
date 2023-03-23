@@ -35,6 +35,7 @@ class CardTransferView(EBSRequestAPIView):
             self.validated_data = serializer.validated_data
             try:
                 print(payload)
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -62,6 +63,7 @@ class BalanceInquiryView(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -91,6 +93,7 @@ class GetBill(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -122,6 +125,7 @@ class PaymentView(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -149,6 +153,7 @@ class changePassword(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -174,6 +179,7 @@ class forgetPassword(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -201,6 +207,7 @@ class doQRRefund(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -224,6 +231,7 @@ class doQRPurchase(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
@@ -255,6 +263,7 @@ class RequestPinChangeView(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({'applicationId': 'ITQAN'})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
