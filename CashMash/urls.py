@@ -36,13 +36,15 @@ urlpatterns = [
     path('CustomerInformation/', views.CustomerInfoView.as_view()),
     path('isAlive/', csrf_exempt(views.echoTest)),
     path('GetFileEncryptionKey/', csrf_exempt(views.GetFileEncryptionKey)),
-    #GetFileEncryptionKey
+    #def get_bill_by_card(request):
+
 
     path('CardTransfer/', views.CardTransferView.as_view()),
     path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
     path('Payment/',views.PaymentView.as_view()),
     path('ServicePayment/', views.ServicePaymentView.as_view()),
     path('GetBill/', views.GetBill.as_view()),
+    path('get_bill_by_card/',csrf_exempt(views.get_bill_by_card)),
     path('GenerateVoucher/', views.GenerateVoucherView.as_view()),
     path('EchoTest/', views.EchoTestView.as_view()),
     path('RequestPinChange/', views.RequestPinChangeView.as_view()),

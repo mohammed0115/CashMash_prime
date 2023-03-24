@@ -189,37 +189,19 @@ class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,BasicUserAPISeriali
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
 class QRRefundSerializer(BasicUserAPISerializer,CompletecardregistrationSerializer):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
-class ChangePasswordSerializer(BasicUserAPISerializer):
-    IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
-    authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
+class ChangePasswordSerializer(BaseConsumerAPISerializer,authenticationSerializer):
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
-class ForgetPasswordSerializer(BasicUserAPISerializer):
-    # IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
-    # authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
+class ForgetPasswordSerializer(BaseConsumerAPISerializer,
+                               EntitySerializer
+                               ):
+    userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
     securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
-class RegisterSerializer(BasicUserAPISerializer,CardRequiredConsumerAPISerializer):
-    registrationType      = serializers.CharField(max_length=2,required=False,allow_null=False)
-    entityGroup           = serializers.CharField(max_length=1,required=False,allow_null=False)
-    fullName              = serializers.CharField(max_length=255,min_length=5,required=False,allow_null=False)
-    financialInstitutionId=serializers.CharField(max_length=4,required=False,allow_null=False)
-    panCategory           =serializers.CharField(max_length=10,required=False,allow_null=False)
-    dateOfBirth           = serializers.CharField(max_length=10,required=False,allow_null=False)
-    customerIdNumber      = serializers.CharField(max_length=40,required=False,allow_null=False)
-    customerIdType        =serializers.CharField(max_length=36,required=False,allow_null=False)
-    # bankAccountNumber     =serializers.CharField(max_length=4,required=False,allow_null=False)
-    bankAccountType       =serializers.CharField(max_length=12,required=False,allow_null=False)
-    bankBranchId          =serializers.CharField(max_length=3,required=False,allow_null=False)
-    bankId                =serializers.CharField(max_length=4,required=False,allow_null=False)
-    job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
-    email                 =serializers.EmailField(required=False,allow_null=False)
-    extraInfo             =extraInforSerializer()
-    
-
-
- 
-
+class AdminResetPasswordSerializer(BaseConsumerAPISerializer,EntitySerializer):
+    userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
+    newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
+    adminUserName    = serializers.CharField(max_length=250,required=False,allow_null=False)
 class BalanceInqueryAPISerializer(EntitySerializer,
                                   authenticationSerializer,
                                   BasicUserAPISerializer,
