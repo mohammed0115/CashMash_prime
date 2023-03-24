@@ -48,7 +48,7 @@ urlpatterns = [
     path('GenerateVoucher/', views.GenerateVoucherView.as_view()),
     path('EchoTest/', views.EchoTestView.as_view()),
     path('RequestPinChange/', views.RequestPinChangeView.as_view()),
-    path('completeCardRegistration/', views.completeCardRegistration.as_view()),
+    # path('completeCardRegistration/', views.completeCardRegistration.as_view()),
     path('forgetPassword/', views.forgetPassword.as_view()),
     path('changePassword/', views.changePassword.as_view()),
     path('doQRPurchase/', views.doQRPurchase.as_view()),
