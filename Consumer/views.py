@@ -281,7 +281,7 @@ def balance_inquiry_for_PAN(request):
 def get_bill_by_card(request):
         data = {}
         request_data = dict(request.data)
-        data = json.loads(request.body.decode('utf-8'))
+        # data = json.loads(request.body.decode('utf-8'))
         required = [
             "PAN",
             "IPIN",
@@ -291,7 +291,7 @@ def get_bill_by_card(request):
             "UUID"
         ]
         for i in required:
-            if i not in data:
+            if i not in request_data:
                 return Response({'status': 'failed', 'missing': i})
         data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
         data['UUID']=request_data["UUID"]
