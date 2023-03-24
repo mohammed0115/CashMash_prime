@@ -285,8 +285,8 @@ def get_bill_by_card(request):
         required = [
             "PAN",
             "IPIN",
-            "payee_id",
-            "payment_info",
+            "payeeId",
+            "paymentInfo",
             "expDate",
             "UUID"
         ]
