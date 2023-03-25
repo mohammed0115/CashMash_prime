@@ -139,12 +139,16 @@ class CardHolderTopUpTransactionRetrieveSerializer(serializers.ModelSerializer):
                   'tranAmount', 'tranCurrency', 'response_message',
                   'response_status', 'transaction_fee', 'additional_amount')
 
-class CardBalanceInquirySerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer):
+class CardBalanceInquirySerializer(CardRequiredConsumerAPISerializer,
+                                    FromAccountConsumerAPISerializer):
     # no extra fields, just the combined CardRequiredConsumerAPISerializer and FromAccountConsumerAPISerializer fields
     pass
 
 
-class ChangeCardsIpin(CardRequiredConsumerAPISerializer):
+class ChangeCardsIpin(CardRequiredConsumerAPISerializer,
+                       authenticationSerializer,
+                        FromAccountConsumerAPISerializer
+                        ):
     newIPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     
     
