@@ -779,13 +779,13 @@ class changePassword(EBSRequestAPIView):
             payload = self.get_payload_from_input(serializer.data)
             self.validated_data = serializer.validated_data
             try:
+                payload.update({ "applicationId": "ITQAN"})
                 ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
                 url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
                 Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
                 
-
             return Response(json.loads(ebs_response.text))
         else:
             return Response(serializer.errors)
