@@ -7,13 +7,19 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.conf import settings
 from .models import TopUpCardTransaction
-
+import phonenumbers
 class PanValidator(RegexValidator):
     code = 'invalid'
 
     def __init__(self):
         super(PanValidator, self).__init__(r"^([0-9]{16}|[0-9]{19})$",
                                            _('PAN should have either 16 or 19 digits.'))
+class phoneValidator(RegexValidator):
+    code = 'invalid'
+
+    def __init__(self):
+        super(PanValidator, self).__init__(r"^([249][9|1][0-9]{10}|[09|01|][0-9]{19})$",
+                                           _('phone number should have either 10 or 13 digits.'))
 class VoucherNumberValidator(RegexValidator):
     code = 'invalid'
 
@@ -280,3 +286,71 @@ class PaymentConsumerAPISerializerEntity(BillInquiryConsumerAPISerializer,
     pass
 class CardInfoSerializer(BaseConsumerAPISerializer):
      PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+class currencyCodeDefault(object):
+    def set_context(self, serializer_field):
+        view = serializer_field.context['view'] # or context['request']
+
+        self.currencyCode = '938'
+
+    def __call__(self):
+        return self.currencyCode
+
+class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
+    merchantAccountType        = serializers.ChoiceField(choices=['CARD', 'ACCOUNT','MOBILE_WALLET'], required=False,allow_null=False)
+    merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
+    merchantName               = serializers.CharField(max_length=25,min_length=2,required=False,allow_null=True)
+    merchantCity               = serializers.CharField(max_length=15,min_length=2,required=False,allow_null=True)
+    mobileNo                   = serializers.CharField(allow_null=False, max_length=15)
+    idType                     = serializers.ChoiceField(choices=['NATIONAL_ID', 'PASSPORT','DRIVING_LICENSE'], required=False,allow_null=False)
+    idNo                       = serializers.CharField(max_length=40,min_length=2)
+    expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    currencyCode               = serializers.CharField(max_length=3, default=currencyCodeDefault())
+    merchantCategoryCode       = serializers.CharField(max_length=4)
+    postalCode                 = serializers.CharField(max_length=5)
+    class Meta:
+        fields = (
+            'merchantAccountType',         
+            'merchantAccountReference',  
+            'merchantName',         
+            'merchantCity',  
+            'mobileNo',         
+            'idType',  
+            'expDate',         
+            'currencyCode',  
+            'merchantCategoryCode',         
+            'postalCode',  
+        )
+        extra_kwargs = {
+            'expDate': {'required': False},  # make `address` to optional if your address in model is required.
+        }
+
+
+    def validate(self, attrs):
+        if attrs['merchantAccountType']=='CARD':
+            raise serializers.ValidationError('the merchantAccountType is CARD expDate is required')
+        return attrs
+    def validate_mobileNo(self,mobileNo):
+        try:
+            phonenum = phonenumbers.parse(mobileNo,"SD")
+            return phonenum
+        except phonenumbers.phonenumberutils.NumberParseException:
+            raise serializers.ValidationError("mbileNo should be valid phone number", code='invalid_mobileNo')
+
+class MerchantTransactionStatusSerializer(CardRequiredConsumerAPISerializer):
+    merchantID=serializers.CharField(max_length=9, required=False,allow_null=True)
+    listSize = serializers.IntegerField(defualt=5)
+    def validate_listSize(self, listSize):
+        """
+        Check that the tranAmount is a multiple of ten.
+        The vouchers are usually cashed from ATMs so the amount needs to be suitable for that.
+        """
+        if listSize > 99:
+            raise serializers.ValidationError("listSize should be less than or equal  99.", code='invalid_listSize')
+
+        return listSize
+class AccountTransferSerializer(CardRequiredConsumerAPISerializer,
+                                FromAccountConsumerAPISerializer,
+                                PositiveAmountSerializer,
+                                toAccountConsumerAPISerializer,
+                                authenticationSerializer):
+    pass

@@ -34,7 +34,8 @@ from .serializers import CardHolderTopUpTransactionRetrieveSerializer, \
     BaseConsumerAPISerializer,CardBalanceInquirySerializer,ChangeCardsIpin,\
     QRPurchaseSerializer,QRRefundSerializer,ChangePasswordSerializer,\
         ForgetPasswordSerializer,CardInfoSerializer
-    
+# class (BaseConsumerAPISerializer,EntitySerializer):
+from .serializers import AdminResetPasswordSerializer,AccountTransferSerializer,MerchantRegistrationSerializer,MerchantTransactionStatusSerializer     
 from .filters import IsTopUpTransactionCardOwnerFilterBackend, TopUpTransactionFilter
 from .authentication import CardHolderAccessTokenAuthentication
 from .pagination import LargeResultsSetPagination
@@ -449,6 +450,135 @@ class GenerateVoucherView(EBSRequestAPIView):
         fields.update(self.common_transaction_response_fields)
         fields.update({'voucher_code': 'voucherCode'})
         return fields
+
+#
+
+#class class MerchantTransactionStatusSerializer(CardRequiredConsumerAPISerializer):(BaseConsumerAPISerializer):
+class AccountTransfer(EBSRequestAPIView):
+    """
+    Send a message to EBS to get list of payees available in the system.
+    This implements the request 3.3 'Payees List' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = AccountTransferSerializer
+    ebs_service_path = 'doAccountTransfer'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+
+
+
+
+#class class (CardRequiredConsumerAPISerializer):(BaseConsumerAPISerializer):
+class MerchantTransactionStatus(EBSRequestAPIView):
+    """
+    Send a message to EBS to get list of payees available in the system.
+    This implements the request 3.3 'Payees List' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = MerchantTransactionStatusSerializer
+    ebs_service_path = 'getMerchantTransactions'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+
+
+
+
+#class (BaseConsumerAPISerializer):
+class MerchantRegistration(EBSRequestAPIView):
+    """
+    Send a message to EBS to get list of payees available in the system.
+    This implements the request 3.3 'Payees List' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = MerchantRegistrationSerializer
+    ebs_service_path = 'doMerchantsRegistration'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+
+
+#AdminResetPasswordSerializer
+class AdminResetPassword(EBSRequestAPIView):
+    """
+    Send a message to EBS to get list of payees available in the system.
+    This implements the request 3.3 'Payees List' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = AdminResetPasswordSerializer
+    ebs_service_path = 'adminResetPassword'
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
 
 
 class ServicePaymentView(EBSRequestAPIView):
