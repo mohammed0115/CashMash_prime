@@ -338,7 +338,7 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
 
 class MerchantTransactionStatusSerializer(CardRequiredConsumerAPISerializer):
     merchantID=serializers.CharField(max_length=9, required=False,allow_null=True)
-    listSize = serializers.IntegerField(defualt=5)
+    listSize = serializers.IntegerField(default=5)
     def validate_listSize(self, listSize):
         """
         Check that the tranAmount is a multiple of ten.
