@@ -243,3 +243,4 @@ CSRF_COOKIE_SECURE = True
 
 DATETIME_FORMAT = "%d%m%y%H%M%S"
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
