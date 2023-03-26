@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.conf import settings
 from .models import TopUpCardTransaction
-import phonenumbers
+# import phonenumbers
 class PanValidator(RegexValidator):
     code = 'invalid'
 
@@ -18,7 +18,7 @@ class phoneValidator(RegexValidator):
     code = 'invalid'
 
     def __init__(self):
-        super(PanValidator, self).__init__(r"^([249][9|1][0-9]{10}|[09|01|][0-9]{19})$",
+        super(PanValidator, self).__init__(r"^(249[0-9]{9})$",
                                            _('phone number should have either 10 or 13 digits.'))
 class VoucherNumberValidator(RegexValidator):
     code = 'invalid'
@@ -300,7 +300,7 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
     merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
     merchantName               = serializers.CharField(max_length=25,min_length=2,required=False,allow_null=True)
     merchantCity               = serializers.CharField(max_length=15,min_length=2,required=False,allow_null=True)
-    mobileNo                   = serializers.CharField(allow_null=False, max_length=15)
+    mobileNo                   = serializers.CharField(allow_null=False, max_length=15,validators=[phoneValidator()])
     idType                     = serializers.ChoiceField(choices=['NATIONAL_ID', 'PASSPORT','DRIVING_LICENSE'], required=False,allow_null=False)
     idNo                       = serializers.CharField(max_length=40,min_length=2)
     expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
@@ -329,12 +329,12 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
         if attrs['merchantAccountType']=='CARD':
             raise serializers.ValidationError('the merchantAccountType is CARD expDate is required')
         return attrs
-    def validate_mobileNo(self,mobileNo):
-        try:
-            phonenum = phonenumbers.parse(mobileNo,"SD")
-            return phonenum
-        except phonenumbers.phonenumberutils.NumberParseException:
-            raise serializers.ValidationError("mbileNo should be valid phone number", code='invalid_mobileNo')
+    # def validate_mobileNo(self,mobileNo):
+    #     try:
+    #         phonenum = phonenumbers.parse(mobileNo,"SD")
+    #         return phonenum
+    #     except phonenumbers.phonenumberutils.NumberParseException:
+    #         raise serializers.ValidationError("mbileNo should be valid phone number", code='invalid_mobileNo')
 
 class MerchantTransactionStatusSerializer(CardRequiredConsumerAPISerializer):
     merchantID=serializers.CharField(max_length=9, required=False,allow_null=True)
