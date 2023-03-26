@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'otp'
 
 ]
-THIRD_PARTY_APPS = ['import_export','rest_framework','corsheaders', 'rangefilter','phonenumber_field']
+THIRD_PARTY_APPS = ['import_export','rest_framework','corsheaders', 'rangefilter']
 INSTALLED_APPS+=THIRD_PARTY_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
