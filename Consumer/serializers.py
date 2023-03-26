@@ -300,7 +300,7 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
     merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
     merchantName               = serializers.CharField(max_length=25,min_length=2,required=False,allow_null=True)
     merchantCity               = serializers.CharField(max_length=15,min_length=2,required=False,allow_null=True)
-    mobileNo                   = serializers.CharField(allow_null=False, max_length=15,validators=[phoneValidator()])
+    mobileNo                   = serializers.CharField(allow_null=False, max_length=15)
     idType                     = serializers.ChoiceField(choices=['NATIONAL_ID', 'PASSPORT','DRIVING_LICENSE'], required=False,allow_null=False)
     idNo                       = serializers.CharField(max_length=40,min_length=2)
     expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
