@@ -353,4 +353,4 @@ class AccountTransferSerializer(CardRequiredConsumerAPISerializer,
                                 PositiveAmountSerializer,
                                 toAccountConsumerAPISerializer,
                                 authenticationSerializer):
-    pass
+    toAccount = serializers.CharField(max_length=18, required=False,allow_null=True)
