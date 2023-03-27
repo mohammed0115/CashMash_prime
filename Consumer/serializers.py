@@ -208,7 +208,7 @@ class ForgetPasswordSerializer(BaseConsumerAPISerializer,
     userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
-    securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
+    securityQuestionAnswer =serializers.CharField(max_length=250,min_length=4,required=False,allow_null=False)
 class AdminResetPasswordSerializer(BaseConsumerAPISerializer,EntitySerializer):
     userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
