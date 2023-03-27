@@ -152,14 +152,15 @@ class GoldSliverCardSerializer(PhysicalCardSerializer,BankSerializer,CustomerSer
     job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
     email                 =serializers.EmailField(required=False,allow_null=False)
     # extraInfo             =extraInforSerializer()
+class authenticationSerializer(serializers.Serializer):
+    authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)  # defaults to '00'
 
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
         model=Register
         fields=['tranDateTime','UUID','userName','entityId','entityType','entityGroup','phoneNo','registrationType'
                 ]
-class UpdateCardRegistrationSerializer(EntityUserAPISerializer,UserNameSerializer,
-                         userPasswordserializer,BaseConsumerAPISerializer,
-                         CardRequiredInfoAPISerializer,
-                         PanSerializer):
-    registrationType      = serializers.CharField(max_length=2,allow_null=False)
+class UpdateCardRegistrationSerializer(BaseConsumerAPISerializer,
+                         PanSerializer,authenticationSerializer):
+    IPIN = serializers.CharField(max_length=88, allow_null=False)
+
