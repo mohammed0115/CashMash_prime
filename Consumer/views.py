@@ -35,7 +35,8 @@ from .serializers import CardHolderTopUpTransactionRetrieveSerializer, \
     QRPurchaseSerializer,QRRefundSerializer,ChangePasswordSerializer,\
         ForgetPasswordSerializer,CardInfoSerializer
 # class (BaseConsumerAPISerializer,EntitySerializer):
-from .serializers import AdminResetPasswordSerializer,AccountTransferSerializer,MerchantRegistrationSerializer,MerchantTransactionStatusSerializer,     
+from .serializers import AdminResetPasswordSerializer,AccountTransferSerializer,MerchantRegistrationSerializer,MerchantTransactionStatusSerializer
+     
 from .filters import IsTopUpTransactionCardOwnerFilterBackend, TopUpTransactionFilter
 from .authentication import CardHolderAccessTokenAuthentication
 from .pagination import LargeResultsSetPagination
