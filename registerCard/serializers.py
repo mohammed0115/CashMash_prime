@@ -91,6 +91,7 @@ class PhysicalCardSerializer(EntityUserAPISerializer,UserNameSerializer,
                          CardRequiredInfoAPISerializer,phoneNoSerializers,
                          PanSerializer
                          ):
+    extraInfo             =extraInforSerializer(required=False)
     registrationType      = serializers.CharField(max_length=2,allow_null=False)
     # financialInstitutionId=serializers.CharField(max_length=4, required=False,allow_null=True)
     panCategory           =serializers.CharField(max_length=10, required=False,allow_null=True)
@@ -150,7 +151,7 @@ class GoldSliverCardSerializer(PhysicalCardSerializer,BankSerializer,CustomerSer
     dateOfBirth           = serializers.DateField(allow_null=False, required=False,format="%d-%m-%Y")
     job                   =serializers.CharField(max_length=50,required=False,allow_null=False)
     email                 =serializers.EmailField(required=False,allow_null=False)
-    extraInfo             =extraInforSerializer()
+    # extraInfo             =extraInforSerializer()
 
 class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityUserAPISerializer,phoneNoSerializers):
     class Meta:
