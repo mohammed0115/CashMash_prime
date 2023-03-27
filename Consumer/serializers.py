@@ -132,6 +132,17 @@ class GenerateVoucherConsumerAPISerializer(CardRequiredConsumerAPISerializer, Fr
     
     
     
+class CashoutAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
+                                PositiveAmountSerializer):
+    toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
+
+
+class CashInAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
+                                PositiveAmountSerializer):
+    toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    toAccountType = serializers.ChoiceField(choices=['00', '01', '11', '31', '91'], required=False,allow_null=False)  # defaults to 00
+
 class CardTransferAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer,
                                 PositiveAmountSerializer):
     toCard = serializers.CharField(allow_null=False, validators=[PanValidator()])
@@ -159,7 +170,9 @@ class ChangeCardsIpin(CardRequiredConsumerAPISerializer,
     
     
     
-
+class merchantIDSerializer(serializers.Serializer):
+    merchantID =serializers.CharField(max_length=9, min_length=9, allow_null=False)
+    QRCode     =serializers.CharField(max_length=500)
 class EntitySerializer(serializers.Serializer):
     entityId        = serializers.CharField(max_length=100,required=False,allow_null=False)
     entityType      = serializers.CharField(max_length=20,required=False,allow_null=False)
@@ -195,9 +208,17 @@ class CompletecardregistrationSerializer(BaseConsumerAPISerializer,userPasswords
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=False)
     securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=False)
 
-class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,BasicUserAPISerializer):
+class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,
+                           FromAccountConsumerAPISerializer,
+                                PositiveAmountSerializer,
+                                merchantIDSerializer,
+                                toAccountConsumerAPISerializer,):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
 class QRRefundSerializer(BasicUserAPISerializer,CompletecardregistrationSerializer):
+    originalTransactionId =serializers.CharField(max_length=250)
+    originalTranUUID = serializers.RegexField(
+        '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        max_length=36, min_length=36, allow_blank=False)
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
 class ChangePasswordSerializer(BaseConsumerAPISerializer,authenticationSerializer):
     IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)

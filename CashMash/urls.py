@@ -40,6 +40,8 @@ urlpatterns = [
 
 
     path('CardTransfer/', views.CardTransferView.as_view()),
+    path('CashIn/', views.CashInView.as_view()),
+    path('Cashout/', views.CashoutView.as_view()),
     path('Balance/',csrf_exempt(views.balance_inquiry_for_PAN)),
     path('Payment/',views.PaymentView.as_view()),
     path('ServicePayment/', views.ServicePaymentView.as_view()),

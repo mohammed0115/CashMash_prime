@@ -35,7 +35,7 @@ from .serializers import CardHolderTopUpTransactionRetrieveSerializer, \
     QRPurchaseSerializer,QRRefundSerializer,ChangePasswordSerializer,\
         ForgetPasswordSerializer,CardInfoSerializer
 # class (BaseConsumerAPISerializer,EntitySerializer):
-from .serializers import AdminResetPasswordSerializer,AccountTransferSerializer,MerchantRegistrationSerializer,MerchantTransactionStatusSerializer     
+from .serializers import AdminResetPasswordSerializer,AccountTransferSerializer,MerchantRegistrationSerializer,MerchantTransactionStatusSerializer,     
 from .filters import IsTopUpTransactionCardOwnerFilterBackend, TopUpTransactionFilter
 from .authentication import CardHolderAccessTokenAuthentication
 from .pagination import LargeResultsSetPagination
@@ -411,6 +411,7 @@ class CardTransferView(EBSRequestAPIView):
             return Response(json.loads(ebs_response.text))
         else:
             return Response(serializer.errors)
+
     def get_transaction_request_fields(self):
         fields = {}
         fields.update(self.common_transaction_request_fields)
@@ -423,6 +424,68 @@ class CardTransferView(EBSRequestAPIView):
         # fields.update({'to_account': 'toAccount'})
         return fields
 
+class CashoutView(EBSRequestAPIView):
+    """
+    Transfer money from one card to the other.
+    This implements the request 3.8 'Card Transfer' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = CardTransferAPISerializer
+    ebs_service_path = 'doCashOut'
+    transaction_model_class = CardTransferTransaction
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                print(payload)
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+        
+class CashInView(EBSRequestAPIView):
+    """
+    Transfer money from one card to the other.
+    This implements the request 3.8 'Card Transfer' in
+    the EBS 'Multi-Channel support - Consumer' API documentation.
+    """
+    permission_classes = ()
+    authentication_classes = ()
+    serializer_class = CardTransferAPISerializer
+    ebs_service_path = 'doCashIn'
+    transaction_model_class = CardTransferTransaction
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            # serializer = self.get_serializer(data=request.data)
+            # serializer.is_valid(raise_exception=True)
+            payload = self.get_payload_from_input(serializer.data)
+            self.validated_data = serializer.validated_data
+            try:
+                print(payload)
+                ebs_response = self.ebs_post(payload)
+            except requests.exceptions.ConnectionError:
+                # logger = self.get_logger()
+                url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
+                Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
+                
+
+            return Response(json.loads(ebs_response.text))
+        else:
+            return Response(serializer.errors)
+        
 # def get_public_key(request):
 #     x = PaymentController.Controller().get_public_key()
 #     return JsonResponse(x)
