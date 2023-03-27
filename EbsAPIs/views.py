@@ -83,7 +83,7 @@ class Ebs(object):
                             IPIN,
                             expDate,
                             mbr,
-                            panCategory):
+                            panCategory,extraInfo):
         data = {}
         data={
     #     "applicationId":"ITQAN",
@@ -101,6 +101,7 @@ class Ebs(object):
         "expDate": expDate, 
         #  "mbr": "0", 
         #  "panCategory": "Standard"
+        "extraInfo":extraInfo 
         }
         # data["UUID"] = UUID
         # data["tranDateTime"] = tranDateTime
