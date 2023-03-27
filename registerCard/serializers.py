@@ -44,7 +44,7 @@ class UserNameSerializer(serializers.Serializer):
     userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
 class extraInforSerializer(serializers.Serializer):
     securityQuestion= serializers.CharField(max_length=100,required=False,allow_null=True)
-    securityQuestionAnswer =serializers.CharField(max_length=17,min_length=4,required=False,allow_null=True)
+    securityQuestionAnswer =serializers.CharField(max_length=250,min_length=4,required=False,allow_null=True)
 class PanSerializer(serializers.Serializer):
     PAN = serializers.CharField(allow_null=False,  required=True,validators=[PanValidator()])
 class CardRequiredInfoAPISerializer(serializers.Serializer):
