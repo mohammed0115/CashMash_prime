@@ -296,9 +296,9 @@ class currencyCodeDefault(object):
         return self.currencyCode
 
 class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
-    # merchantAccountType        = serializers.ChoiceField(choices=['CARD', 'ACCOUNT','MOBILE_WALLET'], required=False,allow_null=False)
-    merchantAccountType        = serializers.CharField(max_length=30)
-    merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
+    merchantAccountType        = serializers.ChoiceField(choices=['CARD', 'ACCOUNT','MOBILE_WALLET'], required=False,allow_null=False)
+    merchantAccountReference   = serializers.CharField(max_length=30)
+    # merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
     merchantName               = serializers.CharField(max_length=25,min_length=2,required=False,allow_null=True)
     merchantCity               = serializers.CharField(max_length=15,min_length=2,required=False,allow_null=True)
     mobileNo                   = serializers.CharField(allow_null=False, max_length=15)
