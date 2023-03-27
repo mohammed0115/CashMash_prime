@@ -161,6 +161,7 @@ class VirtualCardSerializer(BaseConsumerAPISerializer,UserNameSerializer,EntityU
         fields=['tranDateTime','UUID','userName','entityId','entityType','entityGroup','phoneNo','registrationType'
                 ]
 class UpdateCardRegistrationSerializer(BaseConsumerAPISerializer,
-                         PanSerializer,authenticationSerializer):
-    IPIN = serializers.CharField(max_length=88, allow_null=False)
+                         PanSerializer,CardRequiredInfoAPISerializer):
+    # IPIN = serializers.CharField(max_length=88, allow_null=False)
+    pass
 
