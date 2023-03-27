@@ -140,7 +140,7 @@ class UpdateCardRegistration(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = UpdateCardRegistrationSerializer
-    ebs_service_path = 'changeIPin'
+    ebs_service_path = 'updateRegisteredCard'
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
