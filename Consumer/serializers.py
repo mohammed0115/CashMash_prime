@@ -214,7 +214,7 @@ class QRPurchaseSerializer(CardRequiredConsumerAPISerializer,
                                 merchantIDSerializer,
                                 toAccountConsumerAPISerializer,):
     authenticationType = serializers.ChoiceField(choices=['00', ], required=False,allow_null=False)
-class QRRefundSerializer(BasicUserAPISerializer,):
+class QRRefundSerializer(BaseConsumerAPISerializer):
     originalTransactionId =serializers.CharField(max_length=250)
     originalTranUUID = serializers.RegexField(
         '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
