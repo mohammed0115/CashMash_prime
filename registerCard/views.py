@@ -136,7 +136,7 @@ class registerSilverCard(EBSRequestAPIView):
         else:
             return Response(serializer.errors)
 
-class UpdateCardRegistration(EBSRequestAPIView):
+class UpdateCardRegistrationViews(EBSRequestAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = UpdateCardRegistrationSerializer
@@ -150,13 +150,14 @@ class UpdateCardRegistration(EBSRequestAPIView):
             self.validated_data = serializer.validated_data
             try:
                 payload.update({'applicationId': 'ITQAN'})
-                ebs_response = self.ebs_post(payload)
+                # ebs_response = self.ebs_post(payload)
             except requests.exceptions.ConnectionError:
                 # logger = self.get_logger()
                 url = self.get_ebs_base_url() + '/' + self.get_ebs_service_path()
                 Response("Failed to process the EBS request because the connection to VPN is broken. url: %s", url)
                 
 
-            return Response(json.loads(ebs_response.text))
+            # return Response(json.loads(ebs_response.text))
+            return Response(payload)
         else:
             return Response(serializer.errors)

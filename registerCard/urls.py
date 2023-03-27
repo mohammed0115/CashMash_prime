@@ -35,7 +35,7 @@ urlpatterns = [
      path(
     
         "register/UpdateCardRegistration/",
-        UpdateCardRegistration.as_view(),
+        UpdateCardRegistrationViews.as_view(),
         name="completeCardRegistration",
 
     ),
