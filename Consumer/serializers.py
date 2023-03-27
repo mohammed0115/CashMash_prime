@@ -326,7 +326,7 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
 
 
     def validate(self, attrs):
-        if attrs['merchantAccountType']=='CARD':
+        if attrs['merchantAccountType']=='CARD' and 'expDate' in attrs:
             raise serializers.ValidationError('the merchantAccountType is CARD expDate is required')
         return attrs
     # def validate_mobileNo(self,mobileNo):

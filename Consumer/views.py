@@ -954,7 +954,7 @@ class forgetPassword(EBSRequestAPIView):
 
 
 class doQRRefund(EBSRequestAPIView):
-    permission_classes = (HasValidAPIKey,)
+    permission_classes = ()
     authentication_classes = ()
     serializer_class = QRRefundSerializer
     ebs_service_path = 'doQRRefund'
@@ -977,7 +977,7 @@ class doQRRefund(EBSRequestAPIView):
         else:
             return Response(serializer.errors)
 class doQRPurchase(EBSRequestAPIView):
-    permission_classes = (HasValidAPIKey,)
+    permission_classes = ()
     authentication_classes = ()
     serializer_class = QRPurchaseSerializer
     ebs_service_path = 'doQRPurchase'
