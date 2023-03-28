@@ -108,11 +108,7 @@ class TransactionStatusConsumerAPISerializer(BaseConsumerAPISerializer):
     originalTranUUID = serializers.RegexField(
         '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
         max_length=36, min_length=36, allow_blank=False)
-    
-
-
-
-
+   
 
 
 class GenerateVoucherConsumerAPISerializer(CardRequiredConsumerAPISerializer, FromAccountConsumerAPISerializer):

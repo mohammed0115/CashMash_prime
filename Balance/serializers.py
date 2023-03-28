@@ -92,7 +92,7 @@ class TransactionStatusConsumerAPISerializer(BaseConsumerAPISerializer):
 
 
 class CompleteTransactionSerializer(TransactionStatusConsumerAPISerializer):
-    otp     = serializers.CharField(max_length=6, allow_null=False)
+    OTP     = serializers.CharField(max_length=6, allow_null=False)
 
 
 

@@ -50,5 +50,11 @@ urlpatterns = [
         csrf_exempt(RegisterStandardCard),
         name="standard_card",
     ),
+     path(
+        "register/InquirePANlinkwithentityID/",
+         InquirePANlinkwithentityID.as_view(),
+        name="InquirePANlinkwithentityID",
+    ),
+    #
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

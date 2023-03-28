@@ -165,3 +165,9 @@ class UpdateCardRegistrationSerializer(BaseConsumerAPISerializer,
     # IPIN = serializers.CharField(max_length=88, allow_null=False)
     pass
 
+ 
+
+
+class InquirePANlinkwithentityIDSerializer(BaseConsumerAPISerializer):
+    last4PANDigits = serializers.CharField(max_length=4)
+    entityId        = serializers.CharField(max_length=40)
