@@ -40,13 +40,13 @@ class userPasswordserializer(serializers.Serializer):
 class otpserializer(serializers.Serializer):
     otp  =serializers.CharField(max_length=6, allow_null=False)
 class IPINerializer(serializers.Serializer):
-    IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
+    ipin = serializers.CharField(max_length=88, min_length=88, allow_null=False)
 
 
 class authenticationSerializer(serializers.Serializer):
     authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)  # defaults to '00'
 class  PANserializer(serializers.Serializer):
-    PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    pan = serializers.CharField(allow_null=False, validators=[PanValidator()])
 class PanExpDateserializer(serializers.Serializer):
     expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
     def validate_expDate(self, exp_date):
