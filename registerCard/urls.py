@@ -55,6 +55,7 @@ urlpatterns = [
          InquirePANlinkwithentityID.as_view(),
         name="InquirePANlinkwithentityID",
     ),
+    path('', include('IpinGeneration.urls')),
     #
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
