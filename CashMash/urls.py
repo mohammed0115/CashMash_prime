@@ -59,11 +59,11 @@ urlpatterns = [
     path('doQRPurchase/', views.doQRPurchase.as_view()),
     path('doQRRefund/', views.doQRRefund.as_view()),
     path('accounts/', include('accounts.urls')),
+    path('EntityId/Card/', include('IpinGeneration.urls')),
+    path('EntityId/Card/', include('registerCard.urls')),
     
-
     path('EntityId/GetBill/',GetBill.as_view()),
     path('EntityId/Balance/',BalanceInquiryView.as_view()),
-    path('EntityId/Card/', include('registerCard.urls')),
     path('EntityId/Payment/',PaymentView.as_view()),
     path('EntityId/CardTransfer/', CardTransferView.as_view()),
     path('EntityId/forgetPassword/', forgetPassword.as_view()),
