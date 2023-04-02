@@ -6,7 +6,7 @@ from django.utils.timezone import localtime, now
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.conf import settings
-from .models import TopUpCardTransaction
+
 # import phonenumbers
 class PanValidator(RegexValidator):
     code = 'invalid'
