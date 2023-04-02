@@ -64,7 +64,7 @@ class phoneNumberserializer(serializers.Serializer):
     phoneNumber   = serializers.CharField(allow_null=False, max_length=12)
 class BasicUserAPISerializer(serializers.Serializer):
     userName        = serializers.CharField(max_length=250,required=False,allow_null=True)
-    userPassword    = serializers.CharField(max_length=250,required=False,allow_null=True)
+    userPassword    = serializers.CharField(max_length=500,required=False,allow_null=True)
 class doGenerateIPinRequestSerializer(BaseConsumerAPISerializer,
                                       BasicUserAPISerializer,
                                       PANserializer,
