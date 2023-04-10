@@ -159,14 +159,12 @@ class QRPurchaseSerializer(BaseConsumerAPISerializer,
     authenticationType = serializers.ChoiceField(choices=['00', '11'], required=False,allow_null=False)
 
 class ChangePasswordSerializer(BaseConsumerAPISerializer,
-                               EntitySerializer,
-                               userPasswordserializer):
+                               ):
     IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     authenticationType = serializers.ChoiceField(choices=['00', "11"], required=False,allow_null=False)
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
 class ForgetPasswordSerializer(BaseConsumerAPISerializer,
-                               EntitySerializer,
-                               userPasswordserializer):
+                            ):
     # IPIN = serializers.CharField(max_length=88, min_length=88, allow_null=False)
     authenticationType = serializers.ChoiceField(choices=['00','11' ], required=False,allow_null=False)
     newUserPassword    = serializers.CharField(max_length=250,required=False,allow_null=False)
