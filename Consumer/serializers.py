@@ -323,7 +323,7 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
     idType                     = serializers.ChoiceField(choices=['NATIONAL_ID', 'PASSPORT','DRIVING_LICENSE'], required=False,allow_null=False)
     idNo                       = serializers.CharField(max_length=40,min_length=2)
     expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], required=False,allow_null=True)
-    currencyCode               = serializers.CharField(max_length=3, default=currencyCodeDefault())
+    currencyCode               = serializers.CharField(max_length=3)
     merchantCategoryCode       = serializers.CharField(max_length=4)
     postalCode                 = serializers.CharField(max_length=5)
     # class Meta:
