@@ -115,6 +115,49 @@ base_response = {"responseCode": "",
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes(())
+def RegsiterMerchant(request):
+        request_data = dict(request.data)
+        response = base_response
+        data={
+              "applicationId": "ITQAN",
+                "expDate":"3004",
+                "PAN":"2222247701010444",
+                "authenticationType":"00",
+                "merchantAccountType":"CARD",
+                "merchantAccountReference":"2222247701010444",
+                "merchantName":"TEST",
+                "merchantCity":"Khartoum",
+                "mobileNo":"249920915678",
+                "idType":"PASSPORT",
+                "idNo":"20493534590"
+            }
+        data["applicationId"] = ebs_consumer.objects.first().APPLICATION_ID
+        data["tranDateTime"] = request_data["tranDateTime"]
+        data['UUID']=request_data["UUID"]
+        data["merchantAccountType"] = request_data["merchantAccountType"]
+        data["merchantAccountReference"] = request_data["merchantAccountReference"]
+        data["merchantName"] = request_data["merchantName"]
+        data['merchantCity']=request_data["merchantCity"]
+        data["mobileNo"] = request_data["mobileNo"]
+        data["idType"] = request_data["idType"]
+        data["authenticationType"] = request_data["authenticationType"]
+        data["idNo"] = request_data["idNo"]
+        data["PAN"] = request_data["PAN"]
+        data["IPIN"] = request_data["IPIN"]
+        data["expDate"] = request_data["expDate"]
+       
+        # data[""]
+        print(data)
+        resp = json.loads(requests.post(
+            settings.EBS_CONSUMER_API["END_POINT"]+ "/doMerchantsRegistration", json=data, verify=False).text)
+      
+        return Response(resp)    
+
+
+
+@api_view(['POST'])
+@authentication_classes(())
+@permission_classes(())
 def Regsiter(request):
         request_data = dict(request.data)
         response = base_response

@@ -36,9 +36,10 @@ urlpatterns = [
     path('CustomerInformation/', views.CustomerInfoView.as_view()),
     path('isAlive/', csrf_exempt(views.echoTest)),
     path('GetFileEncryptionKey/', csrf_exempt(views.GetFileEncryptionKey)),
-    #def get_bill_by_card(request):
+    #def def (request):
+# (request):
 
-
+    path('RegsiterMerchant/', csrf_exempt(views.RegsiterMerchant)),
     path('CardTransfer/', views.CardTransferView.as_view()),
     path('CashIn/', views.CashInView.as_view()),
     path('Cashout/', views.CashoutView.as_view()),
