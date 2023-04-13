@@ -313,7 +313,7 @@ class currencyCodeDefault(object):
     def __call__(self):
         return self.currencyCode
 
-class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
+class MerchantRegistrationSerializer(BaseConsumerAPISerializer,authenticationSerializer):
     merchantAccountType        = serializers.ChoiceField(choices=['CARD', 'ACCOUNT','MOBILE_WALLET'], required=False,allow_null=False)
     merchantAccountReference   = serializers.CharField(max_length=30)
     # merchantAccountReference   = serializers.ChoiceField(choices=['Card No', 'Account No','Phone No'], required=False,allow_null=False)
@@ -326,6 +326,9 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
     currencyCode               = serializers.CharField(max_length=3)
     merchantCategoryCode       = serializers.CharField(max_length=4)
     postalCode                 = serializers.CharField(max_length=5)
+    PAN = serializers.CharField(allow_null=False, validators=[PanValidator()])
+    IPIN = serializers.CharField(max_length=88, required=False,allow_null=True)
+    # expDate = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
     # class Meta:
     #     fields = (
     #         'merchantAccountType',         
