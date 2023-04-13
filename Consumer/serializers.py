@@ -322,32 +322,32 @@ class MerchantRegistrationSerializer(BaseConsumerAPISerializer):
     mobileNo                   = serializers.CharField(allow_null=False, max_length=15)
     idType                     = serializers.ChoiceField(choices=['NATIONAL_ID', 'PASSPORT','DRIVING_LICENSE'], required=False,allow_null=False)
     idNo                       = serializers.CharField(max_length=40,min_length=2)
-    expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], allow_null=True)
+    expDate                    = serializers.DateField(format='%y%m', input_formats=['%y%m'], required=False,allow_null=True)
     currencyCode               = serializers.CharField(max_length=3, default=currencyCodeDefault())
     merchantCategoryCode       = serializers.CharField(max_length=4)
     postalCode                 = serializers.CharField(max_length=5)
-    class Meta:
-        fields = (
-            'merchantAccountType',         
-            'merchantAccountReference',  
-            'merchantName',         
-            'merchantCity',  
-            'mobileNo',         
-            'idType',  
-            'expDate',         
-            'currencyCode',  
-            'merchantCategoryCode',         
-            'postalCode',  
-        )
-        extra_kwargs = {
-            'expDate': {'required': False},  # make `address` to optional if your address in model is required.
-        }
+    # class Meta:
+    #     fields = (
+    #         'merchantAccountType',         
+    #         'merchantAccountReference',  
+    #         'merchantName',         
+    #         'merchantCity',  
+    #         'mobileNo',         
+    #         'idType',  
+    #         'expDate',         
+    #         'currencyCode',  
+    #         'merchantCategoryCode',         
+    #         'postalCode',  
+    #     )
+    #     extra_kwargs = {
+    #         'expDate': {'required': False},  # make `address` to optional if your address in model is required.
+    #     }
 
 
-    def validate(self, attrs):
-        if attrs['merchantAccountType']=='CARD' and 'expDate' not in attrs:
-            raise serializers.ValidationError('the merchantAccountType is CARD expDate is required')
-        return attrs
+    # def validate(self, attrs):
+    #     if attrs['merchantAccountType']=='CARD' and 'expDate' not in attrs:
+    #         raise serializers.ValidationError('the merchantAccountType is CARD expDate is required')
+    #     return attrs
     # def validate_mobileNo(self,mobileNo):
     #     try:
     #         phonenum = phonenumbers.parse(mobileNo,"SD")
