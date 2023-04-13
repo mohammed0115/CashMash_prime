@@ -168,7 +168,7 @@ class ChangeCardsIpin(CardRequiredConsumerAPISerializer,
     
 class merchantIDSerializer(serializers.Serializer):
     merchantID =serializers.CharField(max_length=9, min_length=9, allow_null=False)
-    QRCode     =serializers.CharField(max_length=500)
+    QRCode     =serializers.CharField(max_length=500,required=False)
 class EntitySerializer(serializers.Serializer):
     entityId        = serializers.CharField(max_length=100,required=False,allow_null=False)
     entityType      = serializers.CharField(max_length=20,required=False,allow_null=False)
