@@ -176,8 +176,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-EBS_CONSUMER_API = {
+EBS_CONSUMER_API1 = {
     'END_POINT': 'https://172.16.199.1:8877/QAConsumer',
+    'APPLICATION_ID': 'ITQAN',
+    'VERIFY_SSL': False,  # See line EBS_MERCHANT_API.VERIFY_SSL.
+    'TIMEOUT': 60,  # 60 seconds
+    'TIME_ZONE': 'Africa/Khartoum'  # This is used to parse datetime to the time zone EBS required
+}
+EBS_CONSUMER_API = {
+    'END_POINT': 'https://172.16.198.29:12457/DEVConsumer',
     'APPLICATION_ID': 'ITQAN',
     'VERIFY_SSL': False,  # See line EBS_MERCHANT_API.VERIFY_SSL.
     'TIMEOUT': 60,  # 60 seconds
